@@ -84,18 +84,6 @@ const Home = () => {
       ? activities
       : activities.filter((a) => a.category === selectedCategory);
 
-  // =========================
-  // FOCUS AREAS (UNCHANGED)
-  // =========================
- // const focusAreas = [
-   // { icon: Scale, title: "Advocacy", desc: "...", stats: "8 policies", color: "from-blue-600 to-blue-700" },
-  //  { icon: BookOpen, title: "Media Literacy", desc: "...", stats: "2000+", color: "from-green-600 to-green-700" },
-  //  { icon: TrendingUp, title: "Research", desc: "...", stats: "12 reports", color: "from-purple-600 to-purple-700" },
-  //  { icon: Users, title: "Capacity Building", desc: "...", stats: "500+", color: "from-orange-600 to-orange-700" },
-  //  { icon: Shield, title: "Digital Safety", desc: "...", stats: "30 workshops", color: "from-red-600 to-red-700" },
-  //  { icon: FileText, title: "Knowledge Sharing", desc: "...", stats: "15 resources", color: "from-teal-600 to-teal-700" },
-//  ];
-// =========================
   return (
     <>
       <HeroCarousel />
