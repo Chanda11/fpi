@@ -1,5 +1,4 @@
 import {
-  Globe,
   Mail,
   Phone,
   MapPin,
