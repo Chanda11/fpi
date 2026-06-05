@@ -136,6 +136,101 @@ const Home = () => {
         </p>
       </section>
 
+      {/* ABOUT FPI */}
+<section className="py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-4">
+    <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+      {/* Image */}
+      <div className="relative">
+        <img
+          src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200"
+          alt="FPI Zambia Training"
+          className="rounded-2xl shadow-xl w-full h-[500px] object-cover"
+        />
+
+        <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-2xl shadow-xl">
+          <h3 className="text-3xl font-bold">10+</h3>
+          <p className="text-sm">
+            Years Supporting Media Development
+          </p>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div>
+        <span className="text-blue-600 font-semibold uppercase tracking-wider">
+          About FPI Zambia
+        </span>
+
+        <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 leading-tight">
+          Strengthening Media Freedom and Democratic Participation
+        </h2>
+
+        <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+          Free Press Initiative Zambia (FPI Zambia) is dedicated to promoting
+          independent journalism, media freedom, media literacy, and citizen
+          participation in democratic governance.
+        </p>
+
+        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+          Through training, research, advocacy, and community engagement,
+          we empower journalists, civil society organizations, and communities
+          with the knowledge and tools needed to build a more informed,
+          transparent, and accountable society.
+        </p>
+
+        <div className="grid grid-cols-2 gap-6 mb-8">
+          <div>
+            <h3 className="text-3xl font-bold text-blue-600">
+              500+
+            </h3>
+            <p className="text-gray-600">
+              Journalists Trained
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold text-blue-600">
+              50+
+            </h3>
+            <p className="text-gray-600">
+              Communities Reached
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold text-blue-600">
+              100+
+            </h3>
+            <p className="text-gray-600">
+              Capacity Building Programs
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-3xl font-bold text-blue-600">
+              25+
+            </h3>
+            <p className="text-gray-600">
+              Strategic Partners
+            </p>
+          </div>
+        </div>
+
+        <Link
+          to="/about"
+          className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+        >
+          Learn More
+          <ArrowRight className="ml-2 w-5 h-5" />
+        </Link>
+      </div>
+
+    </div>
+  </div>
+</section>
+
       {/* ACTIVITIES */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
