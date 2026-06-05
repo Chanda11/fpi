@@ -78,6 +78,44 @@ const Home = () => {
     { id: "webinar", name: "Webinars", icon: "💻" },
     { id: "dialogue", name: "Dialogues", icon: "💬" },
   ];
+  const focusAreas = [
+  {
+    icon: TrendingUp,
+    title: "Media Development",
+    description:
+      "Strengthening independent journalism and promoting professional media standards across Zambia.",
+  },
+  {
+    icon: Shield,
+    title: "Media Freedom",
+    description:
+      "Advocating for freedom of expression, access to information and press freedom.",
+  },
+  {
+    icon: BookOpen,
+    title: "Media Literacy",
+    description:
+      "Empowering citizens with critical thinking skills to identify misinformation and disinformation.",
+  },
+  {
+    icon: Scale,
+    title: "Policy Advocacy",
+    description:
+      "Supporting legal and policy reforms that strengthen democracy, transparency and accountability.",
+  },
+  {
+    icon: FileText,
+    title: "Research & Publications",
+    description:
+      "Producing reports, studies and publications that inform media development and governance.",
+  },
+  {
+    icon: Users,
+    title: "Community Engagement",
+    description:
+      "Building partnerships between journalists, communities, civil society and public institutions.",
+  },
+];
 
   const filteredActivities =
     selectedCategory === "all"
@@ -203,12 +241,39 @@ const Home = () => {
       {/* FOCUS AREAS */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-10">
-            Focus Areas
-          </h2>
+<h2 className="text-4xl font-bold text-center mb-4">
+  Our Focus Areas
+</h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          </div>
+<p className="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+  FPI Zambia works to strengthen media freedom, media literacy,
+  democratic governance and community participation through advocacy,
+  research and capacity building.
+</p>
+<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+  {focusAreas.map((area, index) => {
+    const Icon = area.icon;
+
+    return (
+      <div
+        key={index}
+        className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+      >
+        <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-5">
+          <Icon className="w-7 h-7 text-blue-600" />
+        </div>
+
+        <h3 className="text-xl font-bold text-gray-900 mb-3">
+          {area.title}
+        </h3>
+
+        <p className="text-gray-600 leading-relaxed">
+          {area.description}
+        </p>
+      </div>
+    );
+  })}
+</div>
         </div>
       </section>
 
