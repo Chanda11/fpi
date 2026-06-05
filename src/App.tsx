@@ -55,8 +55,9 @@ function AppContent() {
         <Route path="/mil/about" element={<AboutMIL />} />
         <Route path="/mil/brochure" element={<Brochure />} />
         <Route path="/mil/hubs" element={<Hubs />} />
-      </Routes>
 
+      </Routes>
+//redeployed to vercel, backend is now at https://fpi-zambia-backend.vercel.app
       {!isAdmin && <Footer />}
     </>
   );
