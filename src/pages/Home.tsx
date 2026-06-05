@@ -87,15 +87,15 @@ const Home = () => {
   // =========================
   // FOCUS AREAS (UNCHANGED)
   // =========================
-  const focusAreas = [
-    { icon: Scale, title: "Advocacy", desc: "...", stats: "8 policies", color: "from-blue-600 to-blue-700" },
-    { icon: BookOpen, title: "Media Literacy", desc: "...", stats: "2000+", color: "from-green-600 to-green-700" },
-    { icon: TrendingUp, title: "Research", desc: "...", stats: "12 reports", color: "from-purple-600 to-purple-700" },
-    { icon: Users, title: "Capacity Building", desc: "...", stats: "500+", color: "from-orange-600 to-orange-700" },
-    { icon: Shield, title: "Digital Safety", desc: "...", stats: "30 workshops", color: "from-red-600 to-red-700" },
-    { icon: FileText, title: "Knowledge Sharing", desc: "...", stats: "15 resources", color: "from-teal-600 to-teal-700" },
-  ];
-
+ // const focusAreas = [
+   // { icon: Scale, title: "Advocacy", desc: "...", stats: "8 policies", color: "from-blue-600 to-blue-700" },
+  //  { icon: BookOpen, title: "Media Literacy", desc: "...", stats: "2000+", color: "from-green-600 to-green-700" },
+  //  { icon: TrendingUp, title: "Research", desc: "...", stats: "12 reports", color: "from-purple-600 to-purple-700" },
+  //  { icon: Users, title: "Capacity Building", desc: "...", stats: "500+", color: "from-orange-600 to-orange-700" },
+  //  { icon: Shield, title: "Digital Safety", desc: "...", stats: "30 workshops", color: "from-red-600 to-red-700" },
+  //  { icon: FileText, title: "Knowledge Sharing", desc: "...", stats: "15 resources", color: "from-teal-600 to-teal-700" },
+//  ];
+// =========================
   return (
     <>
       <HeroCarousel />
@@ -194,6 +194,52 @@ const Home = () => {
           )}
 
         </div>
+      </section>
+            {/* IMPACT STATS */}
+      <section className="py-20 bg-blue-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-center">
+          {[
+            { n: "500+", l: "Journalists Trained" },
+            { n: "50+", l: "Communities Reached" },
+            { n: "100+", l: "Workshops Conducted" },
+            { n: "25+", l: "Partners" },
+          ].map((s, i) => (
+            <div key={i}>
+              <h3 className="text-4xl font-bold">{s.n}</h3>
+              <p className="text-blue-200">{s.l}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* FOCUS AREAS */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-10">
+            Focus Areas
+          </h2>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-gray-100 text-center">
+        <h2 className="text-3xl font-bold mb-4">
+          Join Our Mission
+        </h2>
+
+        <p className="text-gray-600 mb-6">
+          Support free press and journalism development in Zambia.
+        </p>
+
+        <Link
+          to="/contact"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+        >
+          Get Involved
+        </Link>
       </section>
     </>
   );
