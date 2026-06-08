@@ -78,6 +78,7 @@ const Navbar = () => {
       items: [
         { name: "Newsletters", path: "/knowledge/newsletters", description: "Updates" },
         { name: "Reports", path: "/knowledge/reports", description: "Publications" },
+        { name: "Press Statements", path: "/knowledge/press-statements", description: "Official statements" },
       ],
     },
         about: {
