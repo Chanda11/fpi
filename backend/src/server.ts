@@ -1,11 +1,15 @@
 import express from "express";
 import cors from "cors";
 import activitiesRoute from "./routes/activities";
+import teamRoutes from "./routes/team";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+console.log("LOADING TEAM ROUTES");
+
+app.use("/api/team", teamRoutes);
 
 app.use("/api/activities", activitiesRoute);
 

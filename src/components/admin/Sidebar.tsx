@@ -30,6 +30,12 @@ const Sidebar = () => {
           <Calendar size={20} />
           Activities
         </Link>
+        <Link
+  to="/admin/team"
+  className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
+>
+  Team Members
+</Link>
 
         <Link
           to="/admin/reports"

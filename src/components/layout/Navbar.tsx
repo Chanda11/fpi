@@ -52,18 +52,18 @@ const Navbar = () => {
   // NAV DATA
   // =========================
   const navItems = {
-    about: {
-      title: "About FPI",
-      icon: "🏢",
+        mil: {
+      title: "MIL",
+      icon: "🎓",
       items: [
-        { name: "About Us", path: "/about", description: "Learn about our mission" },
-        { name: "Our Team", path: "/team", description: "Meet our team" },
-        { name: "Sponsors", path: "/sponsors", description: "Our supporters" },
-        { name: "Partners", path: "/partners", description: "Collaborations" },
+        { name: "About MIL", path: "/mil/about", description: "Understanding media literacy" },
+        { name: "Brochure", path: "/mil/brochure", description: "Download resources" },
+        { name: "Hubs", path: "/mil/hubs", description: "Community info" },
       ],
     },
+
     programs: {
-      title: "Programs",
+      title: "Projects & Activities",
       icon: "📚",
       items: [
         { name: "Advocacy", path: "/programs/advocacy", description: "Media freedom" },
@@ -80,15 +80,17 @@ const Navbar = () => {
         { name: "Reports", path: "/knowledge/reports", description: "Publications" },
       ],
     },
-    mil: {
-      title: "MIL",
-      icon: "🎓",
+        about: {
+      title: "About FPI",
+      icon: "🏢",
       items: [
-        { name: "About MIL", path: "/mil/about", description: "Understanding media literacy" },
-        { name: "Brochure", path: "/mil/brochure", description: "Download resources" },
-        { name: "Hubs", path: "/mil/hubs", description: "Community info" },
+        { name: "About Us", path: "/about", description: "Learn about our mission" },
+        { name: "Our Team", path: "/team", description: "Meet our team" },
+        { name: "Sponsors", path: "/sponsors", description: "Our supporters" },
+        { name: "Partners", path: "/partners", description: "Collaborations" },
       ],
     },
+
   };
 
   const isActive = (path: string) => location.pathname === path;
