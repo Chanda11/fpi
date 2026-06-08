@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import activitiesRoute from "./routes/activities";
 import teamRoutes from "./routes/team";
+import projectsRoute from "./routes/projects";
 
 const app = express();
 
@@ -12,6 +13,7 @@ console.log("LOADING TEAM ROUTES");
 app.use("/api/team", teamRoutes);
 
 app.use("/api/activities", activitiesRoute);
+app.use("/api/projects", projectsRoute);
 
 app.get("/", (req, res) => {
   res.send("FPI Zambia API Running");

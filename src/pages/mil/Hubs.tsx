@@ -19,11 +19,18 @@ const hubs = [
       "Supporting youth, educators and journalists through media literacy initiatives.",
   },
   {
+    city: "Mazabuka",
+    title: "Mazabuka MIL Hub",
+    description:
+      "Promoting responsible media consumption and digital citizenship.",
+  },
+    {
     city: "Livingstone",
     title: "Livingstone MIL Hub",
     description:
       "Promoting responsible media consumption and digital citizenship.",
   },
+
 ];
 
 const Hubs = () => {

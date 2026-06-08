@@ -22,8 +22,10 @@ import Research from "./pages/programs/Research";
 import CapacityBuilding from "./pages/programs/CapacityBuilding";
 import Newsletters from "./pages/knowledge/Newsletters";
 import Reports from "./pages/knowledge/Reports";
-
-
+import TeamMembers from "./pages/admin/TeamMembers";
+import Projects from "./pages/admin/Projects";
+import CreateProject from "./pages/admin/CreateProject";
+import ProjectDetail from "./pages/Projects/ProjectDetail";
 
 function AppContent() {
   const location = useLocation();
@@ -55,8 +57,16 @@ function AppContent() {
         <Route path="/mil/about" element={<AboutMIL />} />
         <Route path="/mil/brochure" element={<Brochure />} />
         <Route path="/mil/hubs" element={<Hubs />} />
+        <Route path="/admin/team" element={<TeamMembers />} />
+        <Route path="/admin/projects" element={<Projects />} />
+        <Route path="/admin/projects/create" element={<CreateProject />} />
+        <Route path="/projects/sherise" element={<div>SheRise</div>} />
+        <Route path="/projects/claim-your-space" element={<div>CLAIM YOUR SPACE</div>} />
+        <Route path="/projects/funsani" element={<div>FUNSANI</div>} />
+        <Route path="/projects/conflict-sensitive-journalism" element={<div>Enhancing Conflict Sensitive Journalism</div>}/>
+        <Route path="/projects/:id" element={<ProjectDetail />} />
 
-      </Routes>
+         </Routes>
       {!isAdmin && <Footer />}
     </>
   );

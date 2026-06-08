@@ -62,16 +62,55 @@ const Navbar = () => {
       ],
     },
 
-    programs: {
-      title: "Projects & Activities",
-      icon: "📚",
-      items: [
-        { name: "Advocacy", path: "/programs/advocacy", description: "Media freedom" },
-        { name: "Media Literacy", path: "/programs/media-literacy", description: "Education" },
-        { name: "Research", path: "/programs/research", description: "Insights" },
-        { name: "Capacity Building", path: "/programs/capacity-building", description: "Training" },
-      ],
+programs: {
+  title: "Projects & Activities",
+  icon: "📚",
+  items: [
+    {
+      name: "Advocacy",
+      path: "/programs/advocacy",
+      description: "Media freedom",
     },
+    {
+      name: "Media Literacy",
+      path: "/programs/media-literacy",
+      description: "Education",
+    },
+    {
+      name: "Research",
+      path: "/programs/research",
+      description: "Insights",
+    },
+    {
+      name: "Capacity Building",
+      path: "/programs/capacity-building",
+      description: "Training",
+    },
+
+    // NEW PROJECTS
+
+    {
+      name: "SheRise",
+      path: "/projects/sherise",
+      description: "Empowering women and girls",
+    },
+    {
+      name: "Claim Your Space",
+      path: "/projects/claim-your-space",
+      description: "Promoting civic participation",
+    },
+    {
+      name: "Funsani",
+      path: "/projects/funsani",
+      description: "Community empowerment initiative",
+    },
+    {
+      name: "Enhancing Conflict Sensitive Journalism",
+      path: "/projects/conflict-sensitive-journalism",
+      description: "Responsible and ethical reporting",
+    },
+  ],
+},
     knowledge: {
       title: "Knowledge",
       icon: "📖",
@@ -87,7 +126,7 @@ const Navbar = () => {
       items: [
         { name: "About Us", path: "/about", description: "Learn about our mission" },
         { name: "Our Team", path: "/team", description: "Meet our team" },
-        { name: "Sponsors", path: "/sponsors", description: "Our supporters" },
+        { name: "Donors", path: "/donors", description: "Our Donors" },
         { name: "Partners", path: "/partners", description: "Collaborations" },
       ],
     },
