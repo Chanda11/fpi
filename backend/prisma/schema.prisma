@@ -81,3 +81,64 @@ model Project {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+model Province {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+
+  createdAt DateTime @default(now())
+
+  hubs      Hub[]
+}
+
+model Hub {
+  id            Int      @id @default(autoincrement())
+
+  name          String
+  slug          String   @unique
+
+  location      String?
+  coordinator   String?
+
+  participants  Int      @default(0)
+
+  description   String?
+
+  image         String?
+
+  published     Boolean  @default(true)
+
+  provinceId    Int
+  province      Province @relation(fields: [provinceId], references: [id])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  photos        HubPhoto[]
+  events        HubEvent[]
+}
+
+model HubPhoto {
+  id         Int      @id @default(autoincrement())
+
+  imageUrl   String
+  caption    String?
+
+  hubId       Int
+  hub         Hub @relation(fields: [hubId], references: [id])
+
+  createdAt   DateTime @default(now())
+}
+
+model HubEvent {
+  id          Int      @id @default(autoincrement())
+
+  title       String
+  description String?
+
+  eventDate   DateTime
+
+  hubId       Int
+  hub         Hub @relation(fields: [hubId], references: [id])
+
+  createdAt   DateTime @default(now())
+}

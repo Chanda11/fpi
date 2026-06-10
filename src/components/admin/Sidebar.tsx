@@ -24,18 +24,33 @@ const Sidebar = () => {
         </Link>
 
         <Link
+          to="/admin/hubs"
+          className="flex items-center gap-3 p-3 rounded hover:bg-slate-800"
+        >
+          MIL Hubs
+        </Link>
+
+        <Link
           to="/admin/activities"
           className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
         >
           <Calendar size={20} />
           Activities
         </Link>
+
         <Link
-  to="/admin/team"
-  className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
->
-  Team Members
-</Link>
+          to="/admin/provinces"
+          className="flex items-center gap-3 p-3 rounded hover:bg-slate-800"
+        >
+          Provinces
+        </Link>
+        
+        <Link
+          to="/admin/team"
+          className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
+        >
+          Team Members
+        </Link>
 
         <Link
           to="/admin/reports"

@@ -4,33 +4,29 @@ import {
   Laptop,
   BookOpen,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const hubs = [
+const provinces = [
   {
-    city: "Lusaka",
-    title: "Lusaka MIL Hub",
-    description:
-      "A center for media literacy training, digital skills development and community engagement.",
-  },
-  {
-    city: "Ndola",
-    title: "Ndola MIL Hub",
-    description:
-      "Supporting youth, educators and journalists through media literacy initiatives.",
+    name: "Lusaka Province",
+    hubs: 7,
+    path: "/mil/province/lusaka",
   },
   {
-    city: "Mazabuka",
-    title: "Mazabuka MIL Hub",
-    description:
-      "Promoting responsible media consumption and digital citizenship.",
+    name: "Copperbelt Province",
+    hubs: 3,
+    path: "/mil/province/copperbelt",
   },
-    {
-    city: "Livingstone",
-    title: "Livingstone MIL Hub",
-    description:
-      "Promoting responsible media consumption and digital citizenship.",
+  {
+    name: "Southern Province",
+    hubs: 1,
+    path: "/mil/province/southern",
   },
-
+  {
+    name: "Eastern Province",
+    hubs: 2,
+    path: "/mil/province/eastern",
+  },
 ];
 
 const Hubs = () => {
@@ -118,35 +114,32 @@ const Hubs = () => {
         </div>
       </section>
 
-      {/* HUB LOCATIONS */}
+      {/* PROVINCES */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
 
           <h2 className="text-4xl font-bold text-center mb-14">
-            Current Hubs
+            MIL Hub Provinces
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
 
-            {hubs.map((hub, index) => (
-              <div
-                key={index}
+            {provinces.map((province) => (
+              <Link
+                key={province.name}
+                to={province.path}
                 className="bg-gray-50 rounded-2xl p-8 shadow hover:shadow-xl transition"
               >
                 <MapPin className="w-10 h-10 text-blue-600 mb-4" />
 
                 <h3 className="text-2xl font-bold mb-2">
-                  {hub.title}
+                  {province.name}
                 </h3>
 
-                <p className="text-blue-600 font-medium mb-4">
-                  {hub.city}
+                <p className="text-blue-600 font-medium">
+                  {province.hubs} Active Hubs
                 </p>
-
-                <p className="text-gray-600">
-                  {hub.description}
-                </p>
-              </div>
+              </Link>
             ))}
 
           </div>
@@ -162,7 +155,7 @@ const Hubs = () => {
 
             <div>
               <h3 className="text-5xl font-bold">
-                10+
+                13+
               </h3>
               <p>MIL Hubs</p>
             </div>

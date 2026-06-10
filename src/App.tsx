@@ -26,6 +26,12 @@ import TeamMembers from "./pages/admin/TeamMembers";
 import Projects from "./pages/admin/Projects";
 import CreateProject from "./pages/admin/CreateProject";
 import ProjectDetail from "./pages/Projects/ProjectDetail";
+import HubDetail from "./pages/mil/Hubs/HubDetail";
+import AdminHubs from "./pages/admin/Hubs";
+import Provinces from "./pages/admin/Provinces";
+import CreateHub from "./pages/admin/CreateHub";
+import ProvinceHubs from "./pages/mil/Hubs/ProvinceHubs";
+import EditHub from "./pages/admin/EditHub";
 
 function AppContent() {
   const location = useLocation();
@@ -39,6 +45,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/activities/:id" element={<ActivityDetail />} />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/activities" element={<Activities />} />
@@ -54,9 +61,6 @@ function AppContent() {
         <Route path="/programs/capacity-building" element={<CapacityBuilding />} />
         <Route path="/knowledge/newsletters" element={<Newsletters />} />
         <Route path="/knowledge/reports" element={<Reports />} />
-        <Route path="/mil/about" element={<AboutMIL />} />
-        <Route path="/mil/brochure" element={<Brochure />} />
-        <Route path="/mil/hubs" element={<Hubs />} />
         <Route path="/admin/team" element={<TeamMembers />} />
         <Route path="/admin/projects" element={<Projects />} />
         <Route path="/admin/projects/create" element={<CreateProject />} />
@@ -64,7 +68,15 @@ function AppContent() {
         <Route path="/projects/claim-your-space" element={<div>CLAIM YOUR SPACE</div>} />
         <Route path="/projects/funsani" element={<div>FUNSANI</div>} />
         <Route path="/projects/conflict-sensitive-journalism" element={<div>Enhancing Conflict Sensitive Journalism</div>}/>
-        <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="/mil/about" element={<AboutMIL />} />
+        <Route path="/mil/brochure" element={<Brochure />} />
+        <Route path="/admin/hubs" element={<AdminHubs />} />
+        <Route path="/admin/hubs/:id/edit"element={<EditHub />}/>
+        <Route path="/admin/provinces" element={<Provinces />} />
+        <Route path="/admin/hubs/create" element={<CreateHub />}/>
+        <Route path="/mil/province/:province"element={<ProvinceHubs />}/>
+        <Route path="/mil/hub/:slug"element={<HubDetail />}/>
+        <Route path="/mil/hubs" element={<Hubs />} />
 
          </Routes>
       {!isAdmin && <Footer />}
