@@ -14,7 +14,8 @@ const EditHub = () => {
   });
 
   useEffect(() => {
-fetch(`http://localhost:5000/api/hubs/id/${id}`)      .then((res) => res.json())
+fetch(`http://localhost:5000/api/hubs/id/${id}`)
+.then((res) => res.json())
       .then((data) => {
         setFormData({
           name: data.name || "",

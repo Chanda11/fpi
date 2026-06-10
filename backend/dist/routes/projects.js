@@ -4,118 +4,116 @@ const express_1 = require("express");
 const prisma_1 = require("../lib/prisma");
 const router = (0, express_1.Router)();
 /**
- * GET ALL ACTIVITIES
+ * GET ALL PROJECTS
  */
 router.get("/", async (req, res) => {
     try {
-        const activities = await prisma_1.prisma.activity.findMany({
+        const projects = await prisma_1.prisma.project.findMany({
             orderBy: {
                 createdAt: "desc",
             },
         });
-        res.json(activities);
+        res.json(projects);
     }
     catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Failed to fetch activities",
+            message: "Failed to fetch projects",
         });
     }
 });
 /**
- * GET SINGLE ACTIVITY
+ * GET SINGLE PROJECT
  */
 router.get("/:id", async (req, res) => {
     try {
-        const activity = await prisma_1.prisma.activity.findUnique({
+        const project = await prisma_1.prisma.project.findUnique({
             where: {
                 id: Number(req.params.id),
             },
         });
-        if (!activity) {
+        if (!project) {
             return res.status(404).json({
-                message: "Activity not found",
+                message: "Project not found",
             });
         }
-        res.json(activity);
+        res.json(project);
     }
     catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Failed to fetch activity",
+            message: "Failed to fetch project",
         });
     }
 });
 /**
- * CREATE ACTIVITY
+ * CREATE PROJECT
  */
 router.post("/", async (req, res) => {
     try {
-        const { title, description, content, image, date, location, participants, category, program, published, } = req.body;
-        const activity = await prisma_1.prisma.activity.create({
+        const { title, description, content, image, category, status, startDate, endDate, published, } = req.body;
+        const project = await prisma_1.prisma.project.create({
             data: {
                 title,
                 description,
                 content,
                 image,
-                date: new Date(date),
-                location,
-                participants,
                 category,
-                program,
+                status,
+                startDate: startDate ? new Date(startDate) : null,
+                endDate: endDate ? new Date(endDate) : null,
                 published,
             },
         });
-        res.status(201).json(activity);
+        res.status(201).json(project);
     }
     catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Failed to create activity",
+            message: "Failed to create project",
         });
     }
 });
 /**
- * DELETE ACTIVITY
+ * UPDATE PROJECT
+ */
+router.put("/:id", async (req, res) => {
+    try {
+        const project = await prisma_1.prisma.project.update({
+            where: {
+                id: Number(req.params.id),
+            },
+            data: req.body,
+        });
+        res.json(project);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Failed to update project",
+        });
+    }
+});
+/**
+ * DELETE PROJECT
  */
 router.delete("/:id", async (req, res) => {
     try {
-        await prisma_1.prisma.activity.delete({
+        await prisma_1.prisma.project.delete({
             where: {
                 id: Number(req.params.id),
             },
         });
         res.json({
-            message: "Activity deleted successfully",
+            message: "Project deleted successfully",
         });
     }
     catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Failed to delete activity",
-        });
-    }
-});
-/**
- * DELETE ACTIVITY
- */
-router.delete("/:id", async (req, res) => {
-    try {
-        await prisma_1.prisma.activity.delete({
-            where: {
-                id: Number(req.params.id),
-            },
-        });
-        res.json({
-            message: "Activity deleted successfully",
-        });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).json({
-            message: "Failed to delete activity",
+            message: "Failed to delete project",
         });
     }
 });
 exports.default = router;
-//# sourceMappingURL=activities.js.map
+//# sourceMappingURL=projects.js.map
