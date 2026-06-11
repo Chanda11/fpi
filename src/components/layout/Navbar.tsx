@@ -147,18 +147,43 @@ programs: {
   return (
     <>
       {/* NAVBAR */}
-      <motion.nav
-        className={`fixed top-0 w-full z-50 transition-all ${
-          scrolled ? "bg-white shadow-md py-2" : "bg-white py-4"
-        }`}
-      >
-        <div className="container mx-auto px-4 flex justify-between items-center">
-
+<motion.nav
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    scrolled
+      ? "backdrop-blur-xl bg-white/70 border-b border-white/20 shadow-lg py-2"
+      : "bg-transparent py-4"
+  }`}
+>
+          <div
+            className="
+            max-w-7xl
+            mx-auto
+            px-4
+            lg:px-8
+            flex
+            justify-between
+            items-center
+            "
+          >
           {/* LOGO */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">
-              FPI
-            </div>
+          <div
+            className="
+            w-12 h-12
+            bg-gradient-to-r
+            from-blue-700
+            to-indigo-700
+            rounded-xl
+            flex
+            items-center
+            justify-center
+            text-white
+            font-bold
+            shadow-lg
+          "
+          >
+            FPI
+          </div>
             <span className="font-bold text-lg">FPI Zambia</span>
           </Link>
 
@@ -172,7 +197,18 @@ programs: {
                 onMouseEnter={() => setDropdown(key)}
                 onMouseLeave={() => setDropdown(null)}
               >
-                <button className="flex items-center space-x-1 px-3 py-2 hover:text-blue-600">
+                <button className="
+                flex
+                items-center
+                space-x-1
+                px-4
+                py-2
+                rounded-xl
+                hover:bg-blue-50
+                hover:text-blue-700
+                transition-all
+                duration-300
+                " >
                   <span>{section.icon}</span>
                   <span>{section.title}</span>
                   <ChevronDown size={14} />
@@ -185,7 +221,16 @@ programs: {
                       initial="hidden"
                       animate="visible"
                       exit="exit"
-                      className="absolute top-full left-0 bg-white shadow-lg rounded-lg w-64 p-2"
+                      className="
+                      absolute
+                      top-full
+                      left-0
+                      mt-2
+                      w-72
+                      glass-effect
+                      shadow-2xl
+                      p-3
+                      "
                     >
                       {section.items.map((item) => (
                         <Link
@@ -207,8 +252,20 @@ programs: {
               </div>
             ))}
 
-            <Link to="/contact" className="px-3 py-2 hover:text-blue-600">
-              Contact
+<Link
+  to="/contact"
+  className={`
+    px-4
+    py-2
+    rounded-xl
+    transition-all
+    ${
+      location.pathname === "/contact"
+        ? "bg-blue-600 text-white"
+        : "hover:bg-blue-50"
+    }
+  `}>             
+   Contact
             </Link>
 
             <button onClick={() => setSearchOpen(true)}>
@@ -227,10 +284,20 @@ programs: {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 bg-white z-40 pt-20 px-6"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+          className="
+          fixed
+          inset-0
+          z-40
+          pt-24
+          px-6
+          overflow-y-auto
+          backdrop-blur-xl
+          bg-white/90
+          "
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 50 }}
+          transition={{ duration: 0.25 }}
           >
             {Object.entries(navItems).map(([key, section]) => (
               <div key={key} className="mb-6">
@@ -263,12 +330,27 @@ programs: {
             onClick={() => setSearchOpen(false)}
           >
             <motion.div
-              className="bg-white p-6 rounded-lg w-full max-w-md"
-              onClick={(e) => e.stopPropagation()}
+              className="
+              glass-effect
+              w-full
+              max-w-xl
+              p-8
+              " 
+             onClick={(e) => e.stopPropagation()}
             >
               <input
-                className="w-full border p-2 rounded"
-                placeholder="Search..."
+              className="
+              w-full
+              border
+              border-gray-200
+              bg-white/50
+              p-4
+              rounded-xl
+              focus:outline-none
+              focus:ring-2
+              focus:ring-blue-500
+              "               
+               placeholder="Search..."
                 autoFocus
               />
 

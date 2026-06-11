@@ -137,8 +137,8 @@ const Home = () => {
       </section>
 
       {/* ABOUT FPI */}
-<section className="py-24 bg-white">
-  <div className="max-w-7xl mx-auto px-4">
+      <section className="py-24 bg-gradient-to-b from-white via-blue-50/30 to-white">
+    <div className="glass-effect">
     <div className="grid lg:grid-cols-2 gap-16 items-center">
 
       {/* Image */}
