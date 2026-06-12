@@ -32,6 +32,7 @@ import Provinces from "./pages/admin/Provinces";
 import CreateHub from "./pages/admin/CreateHub";
 import ProvinceHubs from "./pages/mil/Hubs/ProvinceHubs";
 import EditHub from "./pages/admin/EditHub";
+import ScrollToTop from "./components/ScrollToTop";
 
 function AppContent() {
   const location = useLocation();
@@ -89,6 +90,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <AppContent />
+      <ScrollToTop />
     </BrowserRouter>
   );
 }

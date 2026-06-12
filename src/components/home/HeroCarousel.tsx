@@ -41,7 +41,7 @@ const slides = [
 
 const HeroCarousel = () => {
   return (
-    <div className="h-screen w-full">
+    <div className="min-h-screen h-[100vh] w-full">
       <Swiper
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         effect="fade"
@@ -61,17 +61,16 @@ const HeroCarousel = () => {
               }}
             >
               {/* DARK OVERLAY */}
-              <div className="absolute inset-0 bg-black/60 flex items-center justify-center text-center px-4">
-
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-900/70 to-black/50 flex items-center justify-center text-center px-4">
                 <div className="max-w-4xl animate-fade-in">
 
                   {/* TITLE */}
-                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                  <h1 className="text-5xl md:text-7xl leading-tight font-bold text-white mb-4">
                     {slide.title}
                   </h1>
 
                   {/* SUBTITLE */}
-                  <h2 className="text-xl md:text-2xl text-blue-200 mb-4">
+                  <h2 className="text-lg md:text-2xl font-medium text-blue-200 mb-4">
                     {slide.subtitle}
                   </h2>
 

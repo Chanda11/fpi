@@ -124,112 +124,162 @@ const Home = () => {
 
   return (
     <>
-      <HeroCarousel />
+<>
+  <HeroCarousel />
 
-      {/* WELCOME */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50 text-center">
-        <h2 className="text-4xl font-bold mb-4">
-          Advancing Free Press & Journalism
-        </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Free Press Initiative Zambia promotes media freedom and strengthens journalism.
-        </p>
-      </section>
+  {/* WELCOME */}
+<section className="relative border-b border-gray-200 py-16 px-6 lg:px-12">
+  <div className="max-w-7xl mx-auto flex justify-center"></div>
 
-      {/* ABOUT FPI */}
-      <section className="py-24 bg-gradient-to-b from-white via-blue-50/30 to-white">
-    <div className="glass-effect">
-    <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-      {/* Image */}
-      <div className="relative">
-        <img
-          src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200"
-          alt="FPI Zambia Training"
-          className="rounded-2xl shadow-xl w-full h-[500px] object-cover"
-        />
-
-        <div className="absolute -bottom-6 -right-6 bg-blue-600 text-white p-6 rounded-2xl shadow-xl">
-          <h3 className="text-3xl font-bold">10+</h3>
-          <p className="text-sm">
-            Years Supporting Media Development
-          </p>
-        </div>
+    <div className="max-w-3xl text-center">
+      <div className="flex items-center justify-center gap-3 mb-5">
+        <div className="w-8 h-[2px] bg-red-700" />
+        <span className="uppercase tracking-[0.15em] text-xs font-semibold text-gray-500">
+          Free Press Initiative Zambia
+        </span>
       </div>
 
-      {/* Content */}
-      <div>
-        <span className="text-blue-600 font-semibold uppercase tracking-wider">
-          About FPI Zambia
+      <h2 className="font-serif text-5xl md:text-6xl font-black leading-tight mb-6">
+        Advancing{" "}
+        <span className="italic text-red-700">
+          Free Press
         </span>
+        <br />
+        & Journalism
+      </h2>
 
-        <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 leading-tight">
-          Strengthening Media Freedom and Democratic Participation
+      <p className="text-gray-600 text-lg leading-8 max-w-2xl mx-auto">
+        FPI Zambia promotes media freedom and strengthens independent
+        journalism across the country — building a more informed,
+        transparent and accountable society.
+      </p>
+    </div>
+  </section>
+
+  {/* ABOUT FPI */}
+  <section className="pt-12">
+    {/* HEADER */}
+    <div className="px-6 lg:px-12 pb-6 border-b border-gray-200 flex items-center gap-3">
+      <span className="uppercase tracking-[0.15em] text-xs font-semibold text-gray-500">
+        About FPI
+      </span>
+
+      <span className="text-gray-300">—</span>
+
+      <span className="font-serif font-bold text-lg">
+        Strengthening Media Freedom
+      </span>
+    </div>
+
+    {/* BODY */}
+    <div className="grid lg:grid-cols-2">
+
+      {/* LEFT SIDE */}
+      <div className="p-6 lg:p-10 border-r border-gray-200 flex flex-col gap-8">
+
+        {/* IMAGE */}
+        <div className="relative overflow-hidden rounded-xl">
+          <img
+            src="/images/activity-1.jpg"
+            alt="FPI Zambia Training"
+            className="w-full aspect-[4/3] object-cover"
+          />
+
+          <div className="absolute bottom-0 left-0 right-0 bg-black/75 text-white p-4 flex items-center gap-4">
+            <span className="font-serif text-4xl font-black text-yellow-500">
+              10+
+            </span>
+
+            <span className="text-sm text-gray-200 max-w-[140px]">
+              Years supporting media development
+            </span>
+          </div>
+        </div>
+
+        {/* QUOTE */}
+        <blockquote className="border-l-4 border-red-700 pl-5 italic font-serif text-lg leading-8 text-gray-700">
+          "Empowering journalists and communities with the knowledge
+          to build a more transparent society."
+        </blockquote>
+
+      </div>
+
+      {/* RIGHT SIDE */}
+      <div className="p-6 lg:p-10 flex flex-col gap-6">
+
+        <h2 className="font-serif text-4xl font-black leading-tight">
+          Independent journalism,
+          <br />
+          democratic participation
         </h2>
 
-        <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-          Free Press Initiative Zambia (FPI Zambia) is dedicated to promoting
-          independent journalism, media freedom, media literacy, and citizen
-          participation in democratic governance.
+        <p className="text-gray-600 leading-8">
+          Free Press Initiative Zambia (FPI Zambia) is dedicated to
+          promoting independent journalism, media freedom, media
+          literacy and citizen participation in democratic governance.
         </p>
 
-        <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-          Through training, research, advocacy, and community engagement,
-          we empower journalists, civil society organizations, and communities
-          with the knowledge and tools needed to build a more informed,
-          transparent, and accountable society.
+        <p className="text-gray-600 leading-8">
+          Through training, research, advocacy and community engagement,
+          we empower journalists, civil society organizations and
+          communities with the knowledge and tools needed to build a
+          more informed, transparent and accountable society.
         </p>
 
-        <div className="grid grid-cols-2 gap-6 mb-8">
-          <div>
-            <h3 className="text-3xl font-bold text-blue-600">
+        {/* STATS GRID */}
+        <div className="grid grid-cols-2 border border-gray-200 rounded-xl overflow-hidden">
+
+          <div className="p-5 border-r border-b border-gray-200">
+            <h3 className="font-serif text-3xl font-black text-red-700">
               500+
             </h3>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-500">
               Journalists Trained
             </p>
           </div>
 
-          <div>
-            <h3 className="text-3xl font-bold text-blue-600">
+          <div className="p-5 border-b border-gray-200">
+            <h3 className="font-serif text-3xl font-black text-red-700">
               50+
             </h3>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-500">
               Communities Reached
             </p>
           </div>
 
-          <div>
-            <h3 className="text-3xl font-bold text-blue-600">
+          <div className="p-5 border-r border-gray-200">
+            <h3 className="font-serif text-3xl font-black text-red-700">
               100+
             </h3>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-500">
               Capacity Building Programs
             </p>
           </div>
 
-          <div>
-            <h3 className="text-3xl font-bold text-blue-600">
+          <div className="p-5">
+            <h3 className="font-serif text-3xl font-black text-red-700">
               25+
             </h3>
-            <p className="text-gray-600">
+            <p className="text-sm text-gray-500">
               Strategic Partners
             </p>
           </div>
+
         </div>
 
         <Link
           to="/about"
-          className="inline-flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+          className="inline-flex items-center gap-2 border border-gray-300 px-6 py-3 rounded-lg hover:bg-gray-50 transition w-fit"
         >
-          Learn More
-          <ArrowRight className="ml-2 w-5 h-5" />
+          Learn More About FPI
+          <ArrowRight size={16} />
         </Link>
+
       </div>
 
     </div>
-  </div>
-</section>
+  </section>
+</>
 
       {/* ACTIVITIES */}
       <section className="py-20 bg-gray-50">
@@ -316,22 +366,6 @@ const Home = () => {
 
         </div>
       </section>
-            {/* IMPACT STATS */}
-      <section className="py-20 bg-blue-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-center">
-          {[
-            { n: "500+", l: "Journalists Trained" },
-            { n: "50+", l: "Communities Reached" },
-            { n: "100+", l: "Workshops Conducted" },
-            { n: "25+", l: "Partners" },
-          ].map((s, i) => (
-            <div key={i}>
-              <h3 className="text-4xl font-bold">{s.n}</h3>
-              <p className="text-blue-200">{s.l}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* FOCUS AREAS */}
       <section className="py-20 bg-white">
@@ -352,10 +386,23 @@ const Home = () => {
     return (
       <div
         key={index}
-        className="bg-white border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+        className="glass-effect hover:scale-105 rounded-2xl p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
       >
-        <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-5">
-          <Icon className="w-7 h-7 text-blue-600" />
+        <div
+          className="
+          w-16
+          h-16
+          rounded-2xl
+          bg-gradient-to-r
+          from-blue-600
+          to-indigo-600
+          text-white
+          flex
+          items-center
+          justify-center
+          "
+        >          
+        <Icon className="w-7 h-7 text-blue-600" />
         </div>
 
         <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -372,13 +419,42 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="py-20 bg-gray-50">
+  <div className="max-w-7xl mx-auto px-4">
+    <h2 className="text-4xl font-bold text-center mb-4">
+      Photo Gallery
+    </h2>
+
+    <p className="text-center text-gray-600 mb-12">
+      Highlights from FPI Zambia activities and engagements.
+    </p>
+
+    <div className="grid md:grid-cols-3 gap-6">
+      <img src="/images/activity-1.jpg" className="rounded-xl h-72 w-full object-cover" />
+      <img src="/images/activity-2.jpg" className="rounded-xl h-72 w-full object-cover" />
+      <img src="/images/activity-3.jpg" className="rounded-xl h-72 w-full object-cover" />
+      <img src="/images/activity-4.jpg" className="rounded-xl h-72 w-full object-cover" />
+      <img src="/images/hero-bg-1.jpg" className="rounded-xl h-72 w-full object-cover" />
+      <img src="/images/hero-bg-2.jpg" className="rounded-xl h-72 w-full object-cover" />
+    </div>
+  </div>
+</section>
+
       {/* CTA */}
-      <section className="py-20 bg-gray-100 text-center">
-        <h2 className="text-3xl font-bold mb-4">
+        <section
+     className="py-24 text-white text-center relative bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/images/activity-4.jpg')",
+  }}
+>
+  <div className="absolute inset-0 bg-black/70"></div>
+
+  <div className="relative z-10"></div>     
+      <h2 className="text-3xl font-bold mb-4">
           Join Our Mission
         </h2>
 
-        <p className="text-gray-600 mb-6">
+        <p className="text-blue -100 mb-8">
           Support free press and journalism development in Zambia.
         </p>
 
