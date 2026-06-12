@@ -1,13 +1,11 @@
-import { BookOpen, Globe, ShieldCheck, Users, ArrowRight } from "lucide-react";
+import { BookOpen, Globe, ShieldCheck, Users, } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // ─── tokens ───────────────────────────────────────────────────────────────────
 const SERIF = "'Playfair Display', Georgia, serif";
 const SANS  = "'Inter', system-ui, sans-serif";
-const INK   = "#0f1923";
 const RED   = "#C9293A";
 const GOLD  = "#C9A84C";
-const MUTED_LIGHT = "#6b6259";
 
 // ─── pillar data ──────────────────────────────────────────────────────────────
 const pillars = [
