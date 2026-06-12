@@ -430,12 +430,25 @@ const Home = () => {
     </p>
 
     <div className="grid md:grid-cols-3 gap-6">
-      <img src="/images/activity-1.jpg" className="rounded-xl h-72 w-full object-cover" />
-      <img src="/images/activity-2.jpg" className="rounded-xl h-72 w-full object-cover" />
-      <img src="/images/activity-3.jpg" className="rounded-xl h-72 w-full object-cover" />
-      <img src="/images/activity-4.jpg" className="rounded-xl h-72 w-full object-cover" />
-      <img src="/images/hero-bg-1.jpg" className="rounded-xl h-72 w-full object-cover" />
-      <img src="/images/hero-bg-2.jpg" className="rounded-xl h-72 w-full object-cover" />
+<img
+  src="/images/activity-1.jpg"
+  alt="FPI Zambia activity"
+/>
+
+<img
+  src="/images/activity-2.jpg"
+  alt="Community engagement activity"
+/>
+
+<img
+  src="/images/activity-3.jpg"
+  alt="Media literacy training"
+/>
+
+<img
+  src="/images/activity-4.jpg"
+  alt="Workshop participants"
+/>
     </div>
   </div>
 </section>
