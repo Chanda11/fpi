@@ -452,32 +452,6 @@ const Home = () => {
     </div>
   </div>
 </section>
-
-      {/* CTA */}
-        <section
-     className="py-24 text-white text-center relative bg-cover bg-center"
-  style={{
-    backgroundImage: "url('/images/activity-4.jpg')",
-  }}
->
-  <div className="absolute inset-0 bg-black/70"></div>
-
-  <div className="relative z-10"></div>     
-      <h2 className="text-3xl font-bold mb-4">
-          Join Our Mission
-        </h2>
-
-        <p className="text-blue -100 mb-8">
-          Support free press and journalism development in Zambia.
-        </p>
-
-        <Link
-          to="/contact"
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-        >
-          Get Involved
-        </Link>
-      </section>
     </>
   );
 };

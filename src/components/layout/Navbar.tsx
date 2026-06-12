@@ -150,8 +150,8 @@ programs: {
 <motion.nav
   className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
     scrolled
-      ? "backdrop-blur-xl bg-white/70 border-b border-white/20 shadow-lg py-2"
-      : "bg-transparent py-4"
+      ? "bg-white shadow-lg border-b border-gray-200 py-2"
+      : "bg-white/95 backdrop-blur-md border-b border-gray-100 py-3"
   }`}
 >
           <div
@@ -165,27 +165,30 @@ programs: {
             items-center
             "
           >
-          {/* LOGO */}
-          <Link to="/" className="flex items-center space-x-2">
-          <div
+        <Link
+          to="/"
+          className="flex items-center gap-3"
+        >
+          <img
+            src="/logo.png"
+            alt="FPI Zambia Logo"
             className="
-            w-12 h-12
-            bg-gradient-to-r
-            from-blue-700
-            to-indigo-700
-            rounded-xl
-            flex
-            items-center
-            justify-center
-            text-white
-            font-bold
-            shadow-lg
-          "
-          >
-            FPI
+              h-14
+              w-auto
+              object-contain
+            "
+          />
+
+          <div className="hidden sm:block">
+            <h1 className="font-bold text-lg text-[#0F1923]">
+              FPI Zambia
+            </h1>
+
+            <p className="text-xs text-gray-500">
+              Free Press Initiative Zambia
+            </p>
           </div>
-            <span className="font-bold text-lg">FPI Zambia</span>
-          </Link>
+        </Link>
 
           {/* DESKTOP */}
           <div className="hidden lg:flex items-center space-x-4">
