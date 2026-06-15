@@ -61,15 +61,19 @@ function Eyebrow({ label, light = false }: { label: string; light?: boolean }) {
 const AboutMIL = () => (
   <div style={{ fontFamily: SANS }}>
 
-    {/* ── HERO ─────────────────────────────────────────────────────────────── */}
-    <section style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
-      <img
-        src="/images/note.jpg"
-        alt="Media Literacy"
-        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-      />
-
-      {/* dark gradient overlay */}
+    {/* ── HERO (fixed background) ─────────────────────────────────────────── */}
+    <section
+      style={{
+        position: "relative",
+        height: "100vh",
+        overflow: "hidden",
+        backgroundImage: `url("/images/note.jpg")`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",   // static / fixed background
+      }}
+    >
+      {/* dark gradient overlay (unchanged) */}
       <div
         aria-hidden="true"
         style={{
@@ -80,13 +84,13 @@ const AboutMIL = () => (
         }}
       />
 
-      {/* left red accent stripe */}
+      {/* left red accent stripe (unchanged) */}
       <div
         aria-hidden="true"
         style={{ position: "absolute", top: 0, left: 0, width: 5, height: "100%", background: RED }}
       />
 
-      {/* text */}
+      {/* text (unchanged) */}
       <div
         style={{
           position: "absolute",
@@ -165,7 +169,7 @@ const AboutMIL = () => (
         </div>
       </div>
 
-      {/* floating stat badge */}
+      {/* floating stat badge (unchanged) */}
       <div
         style={{
           position: "absolute",
@@ -198,403 +202,178 @@ const AboutMIL = () => (
       </div>
     </section>
 
-{/* WHAT IS MIL */}
-<section className="py-24 bg-white">
-  <div className="max-w-7xl mx-auto px-6">
-
-    <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-      {/* IMAGE SIDE */}
-      <div className="relative">
-
-        <img
-          src="/images/note3.jpg"
-          alt="MIL Training"
-          className="
-            w-full
-            h-[550px]
-            object-cover
-            rounded-3xl
-            shadow-2xl
-          "
-        />
-
-        <img
-          src="/images/activity-4.jpg"
-          alt="MIL Activity"
-          className="
-            hidden md:block
-            absolute
-            -bottom-10
-            -right-10
-            w-64
-            h-44
-            object-cover
-            rounded-2xl
-            border-4
-            border-white
-            shadow-xl
-          "
-        />
-
-        <div
-          className="
-            absolute
-            top-6
-            left-6
-            bg-[#C9293A]
-            text-white
-            px-6
-            py-4
-            rounded-xl
-            shadow-lg
-          "
-        >
-          <h3 className="text-3xl font-bold">
-            13+
-          </h3>
-
-          <p className="text-sm">
-            Active MIL Hubs
-          </p>
+    {/* WHAT IS MIL (unchanged) */}
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* IMAGE SIDE */}
+          <div className="relative">
+            <img
+              src="/images/note3.jpg"
+              alt="MIL Training"
+              className="w-full h-[550px] object-cover rounded-3xl shadow-2xl"
+            />
+            <img
+              src="/images/activity-4.jpg"
+              alt="MIL Activity"
+              className="hidden md:block absolute -bottom-10 -right-10 w-64 h-44 object-cover rounded-2xl border-4 border-white shadow-xl"
+            />
+            <div className="absolute top-6 left-6 bg-[#C9293A] text-white px-6 py-4 rounded-xl shadow-lg">
+              <h3 className="text-3xl font-bold">13+</h3>
+              <p className="text-sm">Active MIL Hubs</p>
+            </div>
+          </div>
+          {/* CONTENT SIDE */}
+          <div>
+            <span className="uppercase tracking-[0.15em] text-xs font-semibold text-[#C9293A]">
+              About MIL
+            </span>
+            <h2 className="font-serif text-5xl font-black leading-tight mt-4 mb-6">
+              What is Media &
+              <br />
+              <span className="italic text-[#C9293A]">Information Literacy?</span>
+            </h2>
+            <p className="text-gray-600 text-lg leading-8 mb-6">
+              MIL equips people with the ability to find,
+              evaluate, use and create information effectively
+              in an increasingly digital world.
+            </p>
+            <p className="text-gray-600 text-lg leading-8 mb-8">
+              It helps communities navigate misinformation,
+              disinformation and digital challenges while
+              promoting informed participation in society.
+            </p>
+            {/* STATS */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="bg-gray-50 rounded-2xl p-5 text-center">
+                <h3 className="font-serif text-3xl font-black text-[#C9293A]">13+</h3>
+                <p className="text-gray-500 text-sm">MIL Hubs</p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 text-center">
+                <h3 className="font-serif text-3xl font-black text-[#C9293A]">100+</h3>
+                <p className="text-gray-500 text-sm">Sessions</p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-5 text-center">
+                <h3 className="font-serif text-3xl font-black text-[#C9293A]">4</h3>
+                <p className="text-gray-500 text-sm">Provinces</p>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
+    </section>
 
-      {/* CONTENT SIDE */}
-      <div>
-
-        <span className="uppercase tracking-[0.15em] text-xs font-semibold text-[#C9293A]">
-          About MIL
-        </span>
-
-        <h2 className="font-serif text-5xl font-black leading-tight mt-4 mb-6">
-          What is Media &
-          <br />
-          <span className="italic text-[#C9293A]">
-            Information Literacy?
-          </span>
-        </h2>
-
-        <p className="text-gray-600 text-lg leading-8 mb-6">
-          MIL equips people with the ability to find,
-          evaluate, use and create information effectively
-          in an increasingly digital world.
-        </p>
-
-        <p className="text-gray-600 text-lg leading-8 mb-8">
-          It helps communities navigate misinformation,
-          disinformation and digital challenges while
-          promoting informed participation in society.
-        </p>
-
-        {/* STATS */}
-        <div className="grid grid-cols-3 gap-4">
-
-          <div className="bg-gray-50 rounded-2xl p-5 text-center">
-            <h3 className="font-serif text-3xl font-black text-[#C9293A]">
-              13+
-            </h3>
-            <p className="text-gray-500 text-sm">
-              MIL Hubs
-            </p>
-          </div>
-
-          <div className="bg-gray-50 rounded-2xl p-5 text-center">
-            <h3 className="font-serif text-3xl font-black text-[#C9293A]">
-              100+
-            </h3>
-            <p className="text-gray-500 text-sm">
-              Sessions
-            </p>
-          </div>
-
-          <div className="bg-gray-50 rounded-2xl p-5 text-center">
-            <h3 className="font-serif text-3xl font-black text-[#C9293A]">
-              4
-            </h3>
-            <p className="text-gray-500 text-sm">
-              Provinces
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-      {/* ── FOCUS AREAS ───────────────────────────────────────── */}
+    {/* ── FOCUS AREAS (unchanged) ───────────────────────────────────────── */}
     <section className="py-24 bg-[#f8f6f2]">
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="text-center mb-16">
-
           <span className="uppercase tracking-[0.15em] text-xs font-semibold text-[#C9293A]">
             Focus Areas
           </span>
-
           <h2 className="font-serif text-5xl font-black mt-4 mb-6">
             Building Media &
             Information Literacy
           </h2>
-
           <p className="max-w-3xl mx-auto text-gray-600 leading-8">
             Our work focuses on empowering citizens with the skills,
             knowledge and confidence needed to navigate today's
             information ecosystem.
           </p>
-
         </div>
-
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-
           {/* IMAGE */}
           <div className="relative">
-
             <img
               src="/images/activity-3.jpg"
               alt="MIL Focus Areas"
-              className="
-                w-full
-                h-[600px]
-                object-cover
-                rounded-3xl
-                shadow-2xl
-              "
+              className="w-full h-[600px] object-cover rounded-3xl shadow-2xl"
             />
-
             <img
               src="/images/activity-4.jpg"
               alt="MIL Community"
-              className="
-                hidden md:block
-                absolute
-                -bottom-10
-                -right-10
-                w-64
-                h-44
-                object-cover
-                rounded-2xl
-                border-4
-                border-white
-                shadow-xl
-              "
+              className="hidden md:block absolute -bottom-10 -right-10 w-64 h-44 object-cover rounded-2xl border-4 border-white shadow-xl"
             />
-
-            <div
-              className="
-                absolute
-                top-6
-                left-6
-                bg-[#C9293A]
-                text-white
-                px-6
-                py-4
-                rounded-xl
-                shadow-lg
-              "
-            >
-              <h3 className="text-3xl font-bold">
-                4
-              </h3>
-
-              <p className="text-sm">
-                Core Focus Areas
-              </p>
+            <div className="absolute top-6 left-6 bg-[#C9293A] text-white px-6 py-4 rounded-xl shadow-lg">
+              <h3 className="text-3xl font-bold">4</h3>
+              <p className="text-sm">Core Focus Areas</p>
             </div>
-
           </div>
-
           {/* FEATURES */}
           <div className="space-y-5">
-
             {pillars.map((pillar) => (
-
               <div
                 key={pillar.title}
-                className="
-                  bg-white
-                  rounded-2xl
-                  p-6
-                  shadow-sm
-                  hover:shadow-lg
-                  transition
-                "
+                className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition"
               >
-
                 <div className="flex gap-4">
-
                   <div
-                    className="
-                      w-12
-                      h-12
-                      rounded-xl
-                      flex
-                      items-center
-                      justify-center
-                      flex-shrink-0
-                    "
-                    style={{
-                      background: pillar.bg,
-                    }}
+                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: pillar.bg }}
                   >
                     {pillar.icon}
                   </div>
-
                   <div>
-
-                    <h3 className="font-serif text-xl font-bold mb-2">
-                      {pillar.title}
-                    </h3>
-
-                    <p className="text-gray-600 leading-7">
-                      {pillar.body}
-                    </p>
-
+                    <h3 className="font-serif text-xl font-bold mb-2">{pillar.title}</h3>
+                    <p className="text-gray-600 leading-7">{pillar.body}</p>
                   </div>
-
                 </div>
-
               </div>
-
             ))}
-
           </div>
-
         </div>
-
       </div>
     </section>
 
-    {/* ── EXPLORE MORE ───────────────────────────────────────── */}
+    {/* ── EXPLORE MORE (unchanged) ───────────────────────────────────────── */}
     <section className="py-24 bg-white">
-
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="text-center mb-16">
-
           <span className="uppercase tracking-[0.15em] text-xs font-semibold text-[#C9293A]">
             Explore More
           </span>
-
-          <h2 className="font-serif text-5xl font-black mt-4">
-            Resources & Opportunities
-          </h2>
-
+          <h2 className="font-serif text-5xl font-black mt-4">Resources & Opportunities</h2>
         </div>
-
         <div className="grid md:grid-cols-2 gap-10">
-
           {/* BROCHURE */}
           <Link
             to="/mil/brochure"
-            className="
-              group
-              rounded-3xl
-              overflow-hidden
-              shadow-sm
-              hover:shadow-2xl
-              transition-all
-              duration-300
-            "
+            className="group rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300"
           >
-
             <div className="relative overflow-hidden">
-
               <img
                 src="/images/activity-1.jpg"
                 alt="MIL Brochure"
-                className="
-                  w-full
-                  h-80
-                  object-cover
-                  transition-transform
-                  duration-500
-                  group-hover:scale-105
-                "
+                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
-
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-
               <div className="absolute bottom-8 left-8 text-white">
-
-                <span className="uppercase text-xs tracking-[0.15em]">
-                  Publication
-                </span>
-
-                <h3 className="font-serif text-4xl font-black mt-2">
-                  MIL Brochure
-                </h3>
-
-                <p className="text-white/80 mt-2">
-                  Learn more about our initiatives
-                </p>
-
+                <span className="uppercase text-xs tracking-[0.15em]">Publication</span>
+                <h3 className="font-serif text-4xl font-black mt-2">MIL Brochure</h3>
+                <p className="text-white/80 mt-2">Learn more about our initiatives</p>
               </div>
-
             </div>
-
           </Link>
-
           {/* HUBS */}
           <Link
             to="/mil/hubs"
-            className="
-              group
-              rounded-3xl
-              overflow-hidden
-              shadow-sm
-              hover:shadow-2xl
-              transition-all
-              duration-300
-            "
+            className="group rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300"
           >
-
             <div className="relative overflow-hidden">
-
               <img
                 src="/images/activity-4.jpg"
                 alt="MIL Hubs"
-                className="
-                  w-full
-                  h-80
-                  object-cover
-                  transition-transform
-                  duration-500
-                  group-hover:scale-105
-                "
+                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
               />
-
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-
               <div className="absolute bottom-8 left-8 text-white">
-
-                <span className="uppercase text-xs tracking-[0.15em]">
-                  Community Network
-                </span>
-
-                <h3 className="font-serif text-4xl font-black mt-2">
-                  MIL Hubs
-                </h3>
-
-                <p className="text-white/80 mt-2">
-                  Explore learning opportunities across Zambia
-                </p>
-
+                <span className="uppercase text-xs tracking-[0.15em]">Community Network</span>
+                <h3 className="font-serif text-4xl font-black mt-2">MIL Hubs</h3>
+                <p className="text-white/80 mt-2">Explore learning opportunities across Zambia</p>
               </div>
-
             </div>
-
           </Link>
-
         </div>
-
       </div>
-
     </section>
 
   </div>

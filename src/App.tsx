@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Navbar from "./components/layout/Navbar";
+import Contact from "./pages/contact/Contact";import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import ActivityDetail from "./pages/ActivityDetail";
 import Login from "./pages/admin/Login";
@@ -33,6 +33,7 @@ import CreateHub from "./pages/admin/CreateHub";
 import ProvinceHubs from "./pages/mil/Hubs/ProvinceHubs";
 import EditHub from "./pages/admin/EditHub";
 import ScrollToTop from "./components/ScrollToTop";
+
 
 function AppContent() {
   const location = useLocation();
@@ -78,6 +79,7 @@ function AppContent() {
         <Route path="/mil/province/:province"element={<ProvinceHubs />}/>
         <Route path="/mil/hub/:slug"element={<HubDetail />}/>
         <Route path="/mil/hubs" element={<Hubs />} />
+        <Route path="/contact" element={<Contact />} />
 
          </Routes>
       {!isAdmin && <Footer />}

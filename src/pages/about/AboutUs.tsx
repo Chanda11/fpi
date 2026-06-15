@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Users,
@@ -12,736 +13,436 @@ import {
   Landmark,
 } from "lucide-react";
 
-// ─── shared tokens ────────────────────────────────────────────────────────────
-const RED    = "#C9293A";
-const SERIF  = "'Playfair Display', Georgia, serif";
-const SANS   = "'Inter', system-ui, sans-serif";
-const BORDER = "0.5px solid #e5e7eb";
-const MUTED  = "#6b7280";
+// ============================================================
+// DATA CONFIGURATION – all content can be replaced from admin
+// ============================================================
+const aboutData = {
+  hero: {
+    eyebrow: "About FPI Zambia",
+    title: "Building informed communities through",
+    highlighted: "media freedom",
+    description:
+      "We empower journalists, strengthen democratic participation, advance media literacy and promote access to information across Zambia.",
+    backgroundImage: "/images/hero-bg-2.jpg",
+    ctaPrimary: { text: "Meet Our Team", link: "/team" },
+    ctaSecondary: { text: "Partner With Us", link: "/contact" },
+  },
+  whoWeAre: {
+    tag: "Who we are",
+    title: "Strengthening independent media and democratic participation",
+    paragraphs: [
+      "Free Press Initiative Zambia (FPI Zambia) is committed to promoting media freedom, access to information, professional journalism, accountability and democratic governance.",
+      "Through advocacy, capacity building, research and community engagement, we collaborate with journalists, civil society organizations and citizens to build a more informed, inclusive and democratic Zambia.",
+    ],
+    highlights: [
+      "Media Freedom Advocacy",
+      "Capacity Building",
+      "Media Literacy",
+      "Research & Innovation",
+    ],
+    image: "/images/activity-3.jpg",
+    fullWidthImage: "/images/activity-4.jpg",
+  },
+  mvv: [
+    {
+      icon: Target,
+      title: "Mission",
+      description:
+        "To strengthen media freedom, enhance professional journalism and empower citizens through information access and media literacy initiatives.",
+    },
+    {
+      icon: Eye,
+      title: "Vision",
+      description:
+        "A Zambia where independent media, informed citizens and democratic values contribute to inclusive and sustainable development.",
+    },
+    {
+      icon: Shield,
+      title: "Core values",
+      description:
+        "Integrity, accountability, professionalism, inclusiveness, transparency and respect for human rights.",
+    },
+  ],
+  values: [
+    { icon: Scale, title: "Integrity" },
+    { icon: Globe, title: "Freedom" },
+    { icon: Heart, title: "Inclusion" },
+    { icon: Lightbulb, title: "Innovation" },
+    { icon: Landmark, title: "Democracy" },
+    { icon: Users, title: "Participation" },
+  ],
+  impact: {
+    tag: "Our reach",
+    title: "Our Impact",
+    description:
+      "Measuring our contribution to media freedom, media literacy and democratic participation.",
+    stats: [
+      { number: "500+", label: "Journalists trained" },
+      { number: "100+", label: "Workshops conducted" },
+      { number: "50+", label: "Communities reached" },
+      { number: "25+", label: "Strategic partners" },
+    ],
+  },
+  timeline: [
+    { year: "2020", label: "Organization founded" },
+    { year: "2021", label: "Media development programs" },
+    { year: "2022", label: "National advocacy campaigns" },
+    { year: "2023", label: "MIL Hub expansion" },
+    { year: "2024", label: "Digital democracy initiatives" },
+  ],
+  gallery: [
+    { src: "/images/activity-1.jpg", alt: "FPI activity 1" },
+    { src: "/images/activity-2.jpg", alt: "FPI activity 2" },
+    { src: "/images/activity-3.jpg", alt: "FPI activity 3" },
+    { src: "/images/activity-4.jpg", alt: "FPI activity 4" },
+  ],
+  cta: {
+    tag: "Get involved",
+    title: "Join us in strengthening media freedom",
+    description:
+      "Partner with us to promote independent journalism, media literacy and democratic participation in Zambia.",
+    button: { text: "Contact us", link: "/contact" },
+  },
+};
 
-// ─── reusable section header bar ─────────────────────────────────────────────
-function SectionBar({ tag, title }: { tag: string; title: string }) {
-  return (
-    <div
-      style={{
-        padding: "0.75rem 2rem",
-        borderTop: BORDER,
-        borderBottom: BORDER,
-        display: "flex",
-        alignItems: "baseline",
-        gap: 10,
-        fontFamily: SANS,
-      }}
-    >
-      <span
-        style={{
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: MUTED,
-        }}
-      >
-        {tag}
-      </span>
-      <span style={{ color: "#d1d5db", fontSize: 11 }}>—</span>
-      <span style={{ fontFamily: SERIF, fontSize: "1rem", fontWeight: 700 }}>
-        {title}
-      </span>
-    </div>
-  );
+// ============================================================
+// CUSTOM HOOK FOR SCROLL ANIMATION
+// ============================================================
+function useFadeUp(delay = 0) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return {
+    ref,
+    style: {
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(30px)",
+      transition: `opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) ${delay}ms, transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) ${delay}ms`,
+    } as React.CSSProperties,
+  };
 }
 
-// ─── icon box ────────────────────────────────────────────────────────────────
-function IconBox({ children }: { children: React.ReactNode }) {
+// ============================================================
+// SECTION COMPONENTS
+// ============================================================
+const SectionBadge = ({ text, icon }: { text: string; icon?: React.ReactNode }) => (
+  <div className="inline-flex items-center gap-2 bg-[#C9293A]/10 rounded-full px-4 py-1.5 mb-6">
+    {icon && <span className="text-[#C9293A]">{icon}</span>}
+    <span className="text-xs font-medium text-[#C9293A] tracking-wide">{text}</span>
+  </div>
+);
+
+const AnimatedSection = ({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) => {
+  const { ref, style } = useFadeUp(delay);
   return (
-    <div
-      style={{
-        width: 36,
-        height: 36,
-        border: "0.5px solid #d1d5db",
-        borderRadius: 8,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: "1.25rem",
-        color: RED,
-        flexShrink: 0,
-      }}
-    >
+    <div ref={ref} style={style} className={className}>
       {children}
     </div>
   );
-}
+};
 
-// ─── data ─────────────────────────────────────────────────────────────────────
-const mvv = [
-  {
-    icon: <Target size={18} />,
-    title: "Mission",
-    body: "To strengthen media freedom, enhance professional journalism and empower citizens through information access and media literacy initiatives.",
-  },
-  {
-    icon: <Eye size={18} />,
-    title: "Vision",
-    body: "A Zambia where independent media, informed citizens and democratic values contribute to inclusive and sustainable development.",
-  },
-  {
-    icon: <Shield size={18} />,
-    title: "Core values",
-    body: "Integrity, accountability, professionalism, inclusiveness, transparency and respect for human rights.",
-  },
-];
-
-const values = [
-  { icon: <Scale size={16} />,    title: "Integrity"      },
-  { icon: <Globe size={16} />,    title: "Freedom"        },
-  { icon: <Heart size={16} />,    title: "Inclusion"      },
-  { icon: <Lightbulb size={16} />, title: "Innovation"   },
-  { icon: <Landmark size={16} />, title: "Democracy"      },
-  { icon: <Users size={16} />,    title: "Participation"  },
-];
-
-const stats = [
-  { num: "500+", label: "Journalists trained"   },
-  { num: "100+", label: "Workshops conducted"   },
-  { num: "50+",  label: "Communities reached"   },
-  { num: "25+",  label: "Strategic partners"    },
-];
-
-const timeline = [
-  { year: "2020", label: "Organization founded"             },
-  { year: "2021", label: "Media development programs"       },
-  { year: "2022", label: "National advocacy campaigns"      },
-  { year: "2023", label: "MIL Hub expansion"                },
-  { year: "2024", label: "Digital democracy initiatives"    },
-];
-
-const activities = [
-  { src: "/images/activity-1.jpg", alt: "FPI activity 1" },
-  { src: "/images/activity-2.jpg", alt: "FPI activity 2" },
-  { src: "/images/activity-3.jpg", alt: "FPI activity 3" },
-  { src: "/images/activity-4.jpg", alt: "FPI activity 4" },
-];
-
-// ─── page ─────────────────────────────────────────────────────────────────────
-const About = () => (
-  <div style={{ fontFamily: SANS }}>
-{/* HERO */}
-<section
-  style={{
-    position: "relative",
-    minHeight: "100vh",
-    overflow: "hidden",
-  }}
->
-  {/* Background Image */}
-  <img
-    src="/images/hero-bg-2.jpg"
-    alt="FPI Zambia"
+const GradText = ({ children }: { children: React.ReactNode }) => (
+  <span
     style={{
-      position: "absolute",
-      inset: 0,
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      objectPosition: "center center",
-    }}
-  />
-
-  {/* Overlay */}
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      background:
-        "linear-gradient(rgba(10,14,26,0.75), rgba(10,14,26,0.75))",
-    }}
-  />
-
-  {/* Content */}
-  <div
-    style={{
-      position: "relative",
-      zIndex: 2,
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      padding: "0 2rem",
+      background: "linear-gradient(120deg, #E8610A, #F5A623)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text",
+      fontStyle: "italic",
     }}
   >
-    <div style={{ maxWidth: 900 }}>
+    {children}
+  </span>
+);
 
-      {/* Eyebrow */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 10,
-          marginBottom: "1.5rem",
-          color: "rgba(255,255,255,0.7)",
-          textTransform: "uppercase",
-          letterSpacing: "0.15em",
-          fontSize: 12,
-          fontWeight: 600,
-        }}
-      >
-        <span
-          style={{
-            width: 28,
-            height: 2,
-            background: RED,
-          }}
-        />
-        About FPI Zambia
-      </div>
-
-      <h1
-        style={{
-          fontFamily: SERIF,
-          fontSize: "4.5rem",
-          fontWeight: 900,
-          lineHeight: 1.05,
-          color: "#fff",
-          marginBottom: "1.5rem",
-        }}
-      >
-        Building informed
-        <br />
-        communities through{" "}
-        <span style={{ color: RED, fontStyle: "italic" }}>
-          media freedom
-        </span>
-      </h1>
-
-      <p
-        style={{
-          color: "rgba(255,255,255,0.8)",
-          fontSize: "1.1rem",
-          lineHeight: 1.9,
-          maxWidth: 700,
-          margin: "0 auto 2rem",
-        }}
-      >
-        We empower journalists, strengthen democratic
-        participation, advance media literacy and promote
-        access to information across Zambia.
-      </p>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: 16,
-          flexWrap: "wrap",
-        }}
-      >
-        <Link
-          to="/team"
-          style={{
-            background: RED,
-            color: "#fff",
-            padding: "0.85rem 2rem",
-            borderRadius: 8,
-            textDecoration: "none",
-            fontWeight: 600,
-          }}
-        >
-          Meet Our Team
-        </Link>
-
-        <Link
-          to="/contact"
-          style={{
-            border: "1px solid rgba(255,255,255,0.3)",
-            color: "#fff",
-            padding: "0.85rem 2rem",
-            borderRadius: 8,
-            textDecoration: "none",
-          }}
-        >
-          Partner With Us
-        </Link>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-    {/* ── WHO WE ARE ───────────────────────────────────────────────────────── */}
-    <section
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        borderBottom: BORDER,
-      }}
-    >
-      <div style={{ borderRight: BORDER, overflow: "hidden", aspectRatio: "4/3" }}>
-        <img
-          src="/images/activity-3.jpg"
-          alt="FPI Zambia"
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
-      </div>
-
-      <div
-        style={{
-          padding: "2.5rem 2rem",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          gap: "1rem",
-        }}
-      >
-        {/* eyebrow */}
+// ============================================================
+// MAIN COMPONENT – REDESIGNED WITH BETTER SPACING & COLOR
+// ============================================================
+const About = () => {
+  return (
+    <div className="font-sans bg-gradient-to-b from-white to-gray-50">
+      {/* ========== HERO SECTION (unchanged – fixed background) ========== */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            fontSize: 11,
-            fontWeight: 600,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: MUTED,
-          }}
-        >
-          <span style={{ display: "block", width: 24, height: 2, background: RED }} />
-          Who we are
-        </div>
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url(${aboutData.hero.backgroundImage})` }}
+        ></div>
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#C9293A]/20 blur-3xl rounded-full"></div>
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#C9A84C]/15 blur-3xl rounded-full"></div>
 
-        <h2
-          style={{
-            fontFamily: SERIF,
-            fontSize: "1.65rem",
-            fontWeight: 900,
-            lineHeight: 1.15,
-            letterSpacing: "-0.02em",
-            margin: 0,
-          }}
-        >
-          Strengthening independent media and democratic participation
-        </h2>
-
-        <p style={{ fontSize: 13, lineHeight: 1.8, color: MUTED, margin: 0 }}>
-          Free Press Initiative Zambia (FPI Zambia) is committed to promoting media freedom,
-          access to information, professional journalism, accountability and democratic governance.
-        </p>
-
-        <p style={{ fontSize: 13, lineHeight: 1.8, color: MUTED, margin: 0 }}>
-          Through advocacy, capacity building, research and community engagement, we
-          collaborate with journalists, civil society organizations and citizens to build a more
-          informed, inclusive and democratic Zambia.
-        </p>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 8,
-            marginTop: "0.5rem",
-          }}
-        >
-          {[
-            "Media Freedom Advocacy",
-            "Capacity Building",
-            "Media Literacy",
-            "Research & Innovation",
-          ].map((item) => (
-            <div
-              key={item}
-              style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12 }}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: RED,
-                  flexShrink: 0,
-                }}
-              />
-              {item}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+          <div className="max-w-3xl text-center mx-auto">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="block w-6 h-[2px] bg-[#E8610A] rounded-full"></span>
+              <span className="text-[10px] font-bold tracking-[0.16em] uppercase text-white/80">
+                {aboutData.hero.eyebrow}
+              </span>
+              <span className="block w-6 h-[2px] bg-[#E8610A] rounded-full"></span>
             </div>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
+              {aboutData.hero.title}{" "}
+              <GradText>{aboutData.hero.highlighted}</GradText>
+            </h1>
+            <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+              {aboutData.hero.description}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                to={aboutData.hero.ctaPrimary.link}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-6 py-3 rounded-full font-semibold text-sm hover:-translate-y-1 transition-all duration-300 shadow-lg"
+              >
+                {aboutData.hero.ctaPrimary.text}
+              </Link>
+              <Link
+                to={aboutData.hero.ctaSecondary.link}
+                className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/10 hover:-translate-y-1 transition-all duration-300"
+              >
+                {aboutData.hero.ctaSecondary.text}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== WHO WE ARE – CARD LAYOUT WITH GAP ========== */}
+      <section className="py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <AnimatedSection>
+              <SectionBadge text={aboutData.whoWeAre.tag} />
+              <h2 className="font-serif text-3xl md:text-4xl font-black mb-6">
+                {aboutData.whoWeAre.title}
+              </h2>
+              {aboutData.whoWeAre.paragraphs.map((p, idx) => (
+                <p key={idx} className="text-gray-600 mb-4 leading-relaxed">
+                  {p}
+                </p>
+              ))}
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                {aboutData.whoWeAre.highlights.map((item) => (
+                  <div key={item} className="flex items-center gap-2 text-sm font-medium text-[#C9293A]">
+                    <span className="w-2 h-2 rounded-full bg-[#C9293A]" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={150}>
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <img
+                  src={aboutData.whoWeAre.image}
+                  alt="FPI Zambia"
+                  className="w-full h-[450px] object-cover"
+                />
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Full width image as a featured visual (separate, with spacing) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+        <div className="rounded-2xl overflow-hidden shadow-xl">
+          <img
+            src={aboutData.whoWeAre.fullWidthImage}
+            alt="FPI Zambia full"
+            className="w-full h-[380px] object-cover"
+          />
+        </div>
+      </div>
+
+      {/* ========== MISSION / VISION / VALUES – COLORFUL CARDS ========== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-[#C9293A]">
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
+            Who we are
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl font-black mt-4">Mission, Vision & Values</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {aboutData.mvv.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <AnimatedSection key={item.title} delay={idx * 100}>
+                <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1">
+                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9293A] to-[#E8610A] flex items-center justify-center text-white mb-5 shadow-md">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{item.description}</p>
+                </div>
+              </AnimatedSection>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ========== WHAT WE STAND FOR (values) – GRID WITH GAPS ========== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-[#C9293A]">
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
+            Our principles
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl font-black mt-4">What We Stand For</h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {aboutData.values.map((value, idx) => {
+            const Icon = value.icon;
+            return (
+              <AnimatedSection key={value.title} delay={idx * 50}>
+                <div className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#C9293A]/10 to-[#E8610A]/10 flex items-center justify-center text-[#C9293A] mx-auto mb-3">
+                    <Icon size={20} />
+                  </div>
+                  <div className="font-serif font-bold text-gray-800">{value.title}</div>
+                </div>
+              </AnimatedSection>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ========== IMPACT SECTION (with background image) – cards with better spacing ========== */}
+      <section className="relative overflow-hidden py-20 mt-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: "url('/images/hero-bg-1.jpg')" }}
+        ></div>
+        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-white/80 mb-4">
+            <span className="block w-6 h-[2px] bg-[#E8610A]" />
+            {aboutData.impact.tag}
+            <span className="block w-6 h-[2px] bg-[#E8610A]" />
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl font-black text-white mb-4">
+            {aboutData.impact.title}
+          </h2>
+          <p className="text-white/75 max-w-2xl mx-auto mb-12">
+            {aboutData.impact.description}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {aboutData.impact.stats.map((stat) => (
+              <AnimatedSection key={stat.label}>
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-center hover:bg-white/15 transition">
+                  <div className="font-serif text-4xl md:text-5xl font-black text-white mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-white/80 text-sm">{stat.label}</div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== TIMELINE (improved styling, better spacing) ========== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-[#C9293A]">
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
+            Our history
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl font-black mt-4">Our Journey</h2>
+        </div>
+        <div className="space-y-4 max-w-3xl mx-auto">
+          {aboutData.timeline.map((item) => (
+            <AnimatedSection key={item.year}>
+              <div className="flex gap-4 items-start group">
+                <div className="font-serif text-lg font-black text-[#C9293A] min-w-[80px] pt-1">
+                  {item.year}
+                </div>
+                <div className="flex-1 p-4 bg-white rounded-xl border-l-4 border-l-[#C9293A] shadow-sm group-hover:shadow-md transition">
+                  {item.label}
+                </div>
+              </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>
-    </section>
-    <section
-  style={{
-    padding: "2rem",
-    borderTop: BORDER,
-  }}
->
-  <img
-    src="/images/activity-4.jpg"
-    alt="FPI Zambia"
-    style={{
-      width: "100%",
-      height: 380,
-      objectFit: "cover",
-      borderRadius: 12,
-      display: "block",
-    }}
-  />
-</section>
 
-    {/* ── MISSION / VISION / VALUES ────────────────────────────────────────── */}
-    <SectionBar tag="Who we are" title="Mission, vision & values" />
-
-    <section style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
-      {mvv.map((item, i) => (
-        <div
-          key={item.title}
-          style={{
-            padding: "2rem 1.75rem",
-            borderRight: i < mvv.length - 1 ? BORDER : "none",
-          }}
-        >
-          <IconBox>{item.icon}</IconBox>
-          <h3
-            style={{
-              fontFamily: SERIF,
-              fontSize: "1.1rem",
-              fontWeight: 700,
-              margin: "0 0 0.75rem",
-            }}
-          >
-            {item.title}
-          </h3>
-          <p style={{ fontSize: 13, lineHeight: 1.8, color: MUTED, margin: 0 }}>
-            {item.body}
-          </p>
-        </div>
-      ))}
-    </section>
-
-    {/* ── WHAT WE STAND FOR ────────────────────────────────────────────────── */}
-    <SectionBar tag="Our principles" title="What we stand for" />
-
-    <section
-      style={{ display: "grid", gridTemplateColumns: "repeat(6, minmax(0, 1fr))" }}
-    >
-      {values.map((item, i) => (
-        <div
-          key={item.title}
-          style={{
-            padding: "1.5rem 1rem",
-            borderRight: i < values.length - 1 ? BORDER : "none",
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              width: 34,
-              height: 34,
-              border: "0.5px solid #d1d5db",
-              borderRadius: 8,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 1rem",
-              color: RED,
-            }}
-          >
-            {item.icon}
+      {/* ========== GALLERY – GRID WITH GAPS, NO TOUCHING EDGES ========== */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-[#C9293A]">
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
+            In the field
+            <span className="block w-6 h-[2px] bg-[#C9293A]" />
           </div>
-          <div
-            style={{
-              fontFamily: SERIF,
-              fontSize: "0.9rem",
-              fontWeight: 700,
-            }}
-          >
-            {item.title}
-          </div>
+          <h2 className="font-serif text-3xl md:text-4xl font-black mt-4">Our Work in Action</h2>
         </div>
-      ))}
-    </section>
-
-    {/* ── IMPACT ───────────────────────────────────────────────────────────── */}
-    <SectionBar tag="Our reach" title="Impact at a glance" />
-{/* ── IMPACT ───────────────────────────────────────────────────────────── */}
-<SectionBar tag="Our reach" title="Impact at a glance" />
-
-<section
-  style={{
-    position: "relative",
-    overflow: "hidden",
-    minHeight: 450,
-  }}
->
-
-  {/* Background Image */}
-  <img
-    src="/images/hero-bg-1.jpg"
-    alt="Impact"
-    style={{
-      position: "absolute",
-      inset: 0,
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-    }}
-  />
-
-  {/* Overlay */}
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      background: "rgba(8, 20, 40, 0.82)",
-    }}
-  />
-
-  <div
-    style={{
-      position: "relative",
-      zIndex: 2,
-      maxWidth: 1200,
-      margin: "0 auto",
-      padding: "5rem 2rem",
-    }}
-  >
-
-    <div
-      style={{
-        textAlign: "center",
-        marginBottom: "3rem",
-      }}
-    >
-      <h2
-        style={{
-          fontFamily: SERIF,
-          fontSize: "2.5rem",
-          fontWeight: 900,
-          color: "#fff",
-          marginBottom: "1rem",
-        }}
-      >
-        Our Impact
-      </h2>
-
-      <p
-        style={{
-          color: "rgba(255,255,255,0.75)",
-          maxWidth: 600,
-          margin: "0 auto",
-          lineHeight: 1.8,
-        }}
-      >
-        Measuring our contribution to media freedom,
-        media literacy and democratic participation.
-      </p>
-    </div>
-
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
-        gap: "1.5rem",
-      }}
-    >
-
-      {stats.map((s) => (
-        <div
-          key={s.label}
-          style={{
-            background: "rgba(255,255,255,0.08)",
-            backdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.12)",
-            borderRadius: 12,
-            padding: "2rem",
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              fontFamily: SERIF,
-              fontSize: "3rem",
-              fontWeight: 900,
-              color: "#fff",
-              lineHeight: 1,
-              marginBottom: 8,
-            }}
-          >
-            {s.num}
-          </div>
-
-          <div
-            style={{
-              color: "rgba(255,255,255,0.75)",
-              fontSize: 13,
-            }}
-          >
-            {s.label}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {aboutData.gallery.map((img, idx) => (
+            <AnimatedSection key={img.src} delay={idx * 100}>
+              <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </AnimatedSection>
+          ))}
         </div>
-      ))}
-
-    </div>
-
-  </div>
-
-</section>
-
-    {/* ── TIMELINE ─────────────────────────────────────────────────────────── */}
-    <SectionBar tag="Our history" title="Our journey" />
-
-    <section style={{ padding: "2rem" }}>
-      {timeline.map((item, i) => (
-        <div
-          key={item.year}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1.25rem",
-            marginBottom: i < timeline.length - 1 ? "1rem" : 0,
-          }}
-        >
-          <div
-            style={{
-              fontFamily: SERIF,
-              fontSize: "1rem",
-              fontWeight: 900,
-              color: RED,
-              minWidth: "3.5rem",
-              flexShrink: 0,
-            }}
-          >
-            {item.year}
-          </div>
-          <div
-            style={{
-              flex: 1,
-              padding: "0.875rem 1.25rem",
-              border: BORDER,
-              borderLeft: `3px solid ${RED}`,
-              borderRadius: 8,
-              fontSize: 13,
-            }}
-          >
-            {item.label}
-          </div>
-        </div>
-      ))}
-    </section>
-
-    {/* ── IN THE FIELD (activity gallery) ─────────────────────────────────── */}
-    <SectionBar tag="In the field" title="Our work in action" />
-
-    <section
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-      }}
-    >
-      {activities.map((img, i) => (
-        <div
-          key={img.src}
-          style={{
-            overflow: "hidden",
-            aspectRatio: "4/3",
-            borderRight: i % 2 === 0 ? BORDER : "none",
-            borderBottom: i < 2 ? BORDER : "none",
-          }}
-        >
-          <img
-            src={img.src}
-            alt={img.alt}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              display: "block",
-              transition: "transform 0.4s ease",
-            }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLImageElement).style.transform = "scale(1.04)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLImageElement).style.transform = "scale(1)")
-            }
-          />
-        </div>
-      ))}
-    </section>
-
-    {/* ── CTA ──────────────────────────────────────────────────────────────── */}
-    <section
-      style={{
-        padding: "3rem 2rem",
-        borderTop: BORDER,
-        display: "grid",
-        gridTemplateColumns: "1fr auto",
-        alignItems: "center",
-        gap: "2rem",
-      }}
-    >
-      <div>
-        {/* eyebrow */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            fontSize: 11,
-            fontWeight: 600,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            color: MUTED,
-            marginBottom: "1rem",
-          }}
-        >
-          <span style={{ display: "block", width: 24, height: 2, background: RED }} />
-          Get involved
-        </div>
-
-        <h2
-          style={{
-            fontFamily: SERIF,
-            fontSize: "1.8rem",
-            fontWeight: 900,
-            lineHeight: 1.15,
-            letterSpacing: "-0.02em",
-            margin: "0 0 0.75rem",
-          }}
-        >
-          Join us in strengthening media freedom
-        </h2>
-
-        <p style={{ fontSize: 13, lineHeight: 1.8, color: MUTED, margin: 0, maxWidth: 480 }}>
-          Partner with us to promote independent journalism, media literacy and democratic
-          participation in Zambia.
-        </p>
       </div>
 
-      <Link
-        to="/contact"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 8,
-          background: RED,
-          color: "#fff",
-          padding: "0.75rem 1.75rem",
-          borderRadius: 8,
-          fontSize: 13,
-          fontWeight: 600,
-          textDecoration: "none",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
-        }}
-      >
-        Contact us
-        <ArrowRight size={14} />
-      </Link>
-    </section>
-
-  </div>
-);
+      {/* ========== CTA (unchanged structure, only spacing) ========== */}
+      <div className="bg-gradient-to-r from-[#C9293A]/10 to-[#E8610A]/10 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+              <div className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.12em] uppercase text-[#C9293A] mb-3">
+                <span className="block w-6 h-[2px] bg-[#C9293A]" />
+                {aboutData.cta.tag}
+              </div>
+              <h2 className="font-serif text-2xl md:text-3xl font-black leading-tight mb-2">
+                {aboutData.cta.title}
+              </h2>
+              <p className="text-gray-600 max-w-md">{aboutData.cta.description}</p>
+            </div>
+            <Link
+              to={aboutData.cta.button.link}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-8 py-3 rounded-full font-semibold hover:-translate-y-1 transition-all duration-300 shadow-lg whitespace-nowrap"
+            >
+              {aboutData.cta.button.text}
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default About;

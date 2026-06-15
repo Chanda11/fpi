@@ -22,6 +22,20 @@ const programs = [
   { label: "Capacity Building", to: "/programs/capacity-building" },
 ];
 
+const milLinks = [
+  { label: "About MIL", to: "/mil/about" },
+  { label: "MIL Brochure", to: "/mil/brochure" },
+  { label: "MIL Hub", to: "/mil/hubs" },
+  { label: "Learning Resources", to: "/mil/resources" },
+];
+
+const resources = [
+  { label: "Reports", to: "/resources/reports" },
+  { label: "Publications", to: "/resources/publications" },
+  { label: "Newsletters", to: "/knowledge/newsletters" },
+  { label: "Press Statements", to: "/knowledge/press-statements" },
+];
+
 const contactItems = [
   { icon: <MapPin size={14} />,  text: "Lusaka, Zambia"     },
   { icon: <Phone size={14} />,   text: "+260 XXX XXX XXX"   },
