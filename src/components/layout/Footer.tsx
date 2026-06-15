@@ -214,7 +214,7 @@ const Footer = () => {
               <em style={{ fontStyle: "italic", color: GOLD }}>democratic participation</em>
             </h2>
             <p style={{ fontSize: 13, lineHeight: 1.8, color: "rgba(255,255,255,0.42)", margin: 0 }}>
-              Subscribe for updates on media freedom, journalism training, research publications, events and opportunities.
+              Subscribe for updates on media freedom, journalism training, research publications, and opportunities.
             </p>
           </div>
 
