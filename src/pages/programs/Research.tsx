@@ -6,7 +6,6 @@ import {
   BarChart3,
   BookOpen,
   ArrowRight,
-  CheckCircle2,
   Globe,
 } from "lucide-react";
 

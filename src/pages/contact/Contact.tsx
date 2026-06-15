@@ -103,13 +103,6 @@ function useFadeUp(delay = 0) {
 // ============================================================
 // SECTION COMPONENTS
 // ============================================================
-const SectionBadge = ({ text, icon }: { text: string; icon?: React.ReactNode }) => (
-  <div className="inline-flex items-center gap-2 bg-[#C9293A]/10 rounded-full px-4 py-1.5 mb-6">
-    {icon && <span className="text-[#C9293A]">{icon}</span>}
-    <span className="text-xs font-medium text-[#C9293A] tracking-wide">{text}</span>
-  </div>
-);
-
 const AnimatedSection = ({
   children,
   delay = 0,

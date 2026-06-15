@@ -6,7 +6,6 @@ import {
   Briefcase,
   Award,
   ArrowRight,
-  CheckCircle2,
   Globe,
 } from "lucide-react";
 

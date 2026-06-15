@@ -33,23 +33,29 @@ type Activity = {
 
 const useScrollReveal = () => {
   const ref = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
+    const currentRef = ref.current;
+
+    if (!currentRef) return;
+
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("sr-visible");
-            observer.unobserve(entry.target);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("sr-visible");
+          observer.unobserve(entry.target);
+        }
       },
-      { threshold: 0.08 }
+      { threshold: 0.1 }
     );
-    if (ref.current) observer.observe(ref.current);
+
+    observer.observe(currentRef);
+
     return () => {
-      if (ref.current) observer.unobserve(ref.current);
+      observer.disconnect();
     };
   }, []);
+
   return ref;
 };
 

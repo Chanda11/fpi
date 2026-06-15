@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Mail, Calendar, ArrowRight, Download, FileText, CheckCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Mail, Calendar, ArrowRight, Download} from "lucide-react";
 
 // ============================================================
 // DATA CONFIGURATION – all content can be replaced from admin
