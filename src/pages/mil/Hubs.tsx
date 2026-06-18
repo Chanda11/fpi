@@ -810,7 +810,7 @@ const Hubs = () => {
                         margin: "0 0 2px",
                       }}
                     >
-                      Active Hubs
+                      MIL Hubs
                     </p>
                     <div
                       style={{

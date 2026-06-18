@@ -33,7 +33,10 @@ import CreateHub from "./pages/admin/CreateHub";
 import ProvinceHubs from "./pages/mil/Hubs/ProvinceHubs";
 import EditHub from "./pages/admin/EditHub";
 import ScrollToTop from "./components/ScrollToTop";
-
+import Resources from "./pages/resources/Resources";
+import Publications from "./pages/knowledge/Publications";
+import PressStatements from "./pages/knowledge/PressStatments";
+import EditProject from "./pages/admin/EditProject";
 
 function AppContent() {
   const location = useLocation();
@@ -80,7 +83,11 @@ function AppContent() {
         <Route path="/mil/hub/:slug"element={<HubDetail />}/>
         <Route path="/mil/hubs" element={<Hubs />} />
         <Route path="/contact" element={<Contact />} />
-
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/knowledge/publications"element={<Publications />}/>
+        <Route path="/knowledge/press-statements"element={<PressStatements />}/>
+        <Route path="/admin/projects/:id/edit"element={<EditProject />}/>
+        
          </Routes>
       {!isAdmin && <Footer />}
     </>

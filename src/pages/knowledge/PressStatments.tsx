@@ -1,66 +1,61 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  FileText,
-  Download,
+  Megaphone,
   Calendar,
-  BookOpen,
   ArrowRight,
+  Mail,
 } from "lucide-react";
 
 // ============================================================
 // DATA CONFIGURATION – all content can be replaced from admin
 // ============================================================
-const reportsData = {
+const pressStatementsData = {
   hero: {
-    eyebrow: "Knowledge Centre",
-    title: "Reports & Publications",
+    eyebrow: "Official Statements",
+    title: "Press Statements",
     description:
-      "Research reports, policy briefs, toolkits and publications produced by FPI Zambia.",
+      "Official statements, media releases and public responses from FPI Zambia.",
     backgroundImage: "/images/activity-1.jpg",
-    ctaPrimary: { text: "Explore Reports", link: "#reports" },
-    ctaSecondary: { text: "View All Publications", link: "#archive" },
+    ctaPrimary: { text: "View Archive", link: "#archive" },
+    ctaSecondary: { text: "Media Enquiries", link: "#media-contact" },
   },
-  intro: {
-    tag: "Knowledge Resources",
-    title: "Evidence for Change",
+  featured: {
+    tag: "Featured Statement",
+    title: "FPI Statement on Media Freedom",
     description:
-      "Our publications provide evidence, analysis and practical guidance to strengthen journalism, media literacy and democratic governance.",
-    icon: BookOpen,
+      "FPI Zambia reaffirms its commitment to media freedom, journalist safety and democratic participation.",
   },
-  reports: {
-    tag: "Our Reports",
-    title: "Latest Reports & Publications",
+  archive: {
+    tag: "Archive",
+    title: "Statement Archive",
     items: [
       {
-        title: "State of Media Freedom Report 2025",
-        category: "Research Report",
+        title: "Statement on Media Freedom",
+        category: "Media Freedom",
+        date: "June 2025",
+      },
+      {
+        title: "Position on Journalist Safety",
+        category: "Journalist Safety",
         date: "May 2025",
-        description:
-          "An assessment of media freedom, journalism practices and access to information in Zambia.",
-        icon: FileText,
       },
       {
-        title: "Media Literacy Toolkit",
-        category: "Educational Resource",
-        date: "March 2025",
-        description:
-          "A practical guide for educators, journalists and community leaders.",
-        icon: FileText,
-      },
-      {
-        title: "Digital Media Trends Study",
-        category: "Research Publication",
-        date: "January 2025",
-        description:
-          "Exploring digital transformation and emerging technologies in the media sector.",
-        icon: FileText,
+        title: "Digital Rights and Civic Participation",
+        category: "Digital Rights",
+        date: "April 2025",
       },
     ],
+  },
+  mediaContact: {
+    title: "Media Enquiries",
+    description:
+      "For interviews, comments or media enquiries, please contact FPI Zambia.",
+    email: "info@fpizambia.org",
   },
   cta: {
     title: "Stay Informed",
     description:
-      "Subscribe to receive updates on new publications, research findings and media freedom reports.",
+      "Subscribe to receive press statements and updates on media freedom issues.",
     buttonText: "Subscribe Now",
     link: "#",
   },
@@ -144,7 +139,7 @@ const GradText = ({ children }: { children: React.ReactNode }) => (
 // ============================================================
 // MAIN COMPONENT
 // ============================================================
-const Reports = () => {
+const PressStatements = () => {
   return (
     <div className="font-sans bg-gradient-to-b from-white to-gray-50">
       <style>{`
@@ -169,7 +164,7 @@ const Reports = () => {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url(${reportsData.hero.backgroundImage})` }}
+          style={{ backgroundImage: `url(${pressStatementsData.hero.backgroundImage})` }}
         ></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
@@ -181,93 +176,106 @@ const Reports = () => {
             <div className="inline-flex items-center gap-2 mb-4">
               <span className="block w-6 h-[2px] bg-[#E8610A] rounded-full"></span>
               <span className="text-[10px] font-bold tracking-[0.16em] uppercase text-white/80">
-                {reportsData.hero.eyebrow}
+                {pressStatementsData.hero.eyebrow}
               </span>
               <span className="block w-6 h-[2px] bg-[#E8610A] rounded-full"></span>
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
-              <GradText>Reports & Publications</GradText>
+              <GradText>Press Statements</GradText>
             </h1>
             <p className="text-white/80 text-base md:text-lg max-w-2xl mb-8 leading-relaxed">
-              {reportsData.hero.description}
+              {pressStatementsData.hero.description}
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href={reportsData.hero.ctaPrimary.link}
+                href={pressStatementsData.hero.ctaPrimary.link}
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-6 py-3 rounded-full font-semibold text-sm hover:-translate-y-1 transition-all duration-300 shadow-lg"
               >
-                {reportsData.hero.ctaPrimary.text}
+                {pressStatementsData.hero.ctaPrimary.text}
               </a>
               <a
-                href={reportsData.hero.ctaSecondary.link}
+                href={pressStatementsData.hero.ctaSecondary.link}
                 className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/10 hover:-translate-y-1 transition-all duration-300"
               >
-                {reportsData.hero.ctaSecondary.text}
+                {pressStatementsData.hero.ctaSecondary.text}
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========== INTRO SECTION ========== */}
+      {/* ========== FEATURED STATEMENT ========== */}
       <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <div className="inline-flex items-center gap-2 text-[#C9293A] mb-4">
-              <span className="block w-6 h-[2px] bg-[#C9293A] rounded-full"></span>
-              <span className="text-[10px] font-bold tracking-[0.16em] uppercase">{reportsData.intro.tag}</span>
-              <span className="block w-6 h-[2px] bg-[#C9293A] rounded-full"></span>
+            <div className="bg-[#080c1a] rounded-2xl p-8 md:p-12 text-white shadow-2xl">
+              <span className="text-[#C9A84C] uppercase tracking-wider text-xs font-semibold">
+                {pressStatementsData.featured.tag}
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl font-black mt-3 mb-4">
+                {pressStatementsData.featured.title}
+              </h2>
+              <p className="text-gray-300 text-sm md:text-base max-w-3xl leading-relaxed">
+                {pressStatementsData.featured.description}
+              </p>
             </div>
-            <BookOpen className="w-14 h-14 text-[#C9293A] mx-auto mb-4" />
-            <h2 className="font-serif text-3xl md:text-5xl font-black mb-4">
-              {reportsData.intro.title}
-            </h2>
-            <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-              {reportsData.intro.description}
-            </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* ========== REPORTS CARDS ========== */}
-      <section id="reports" className="py-20 md:py-28 bg-gray-50">
+      {/* ========== ARCHIVE ========== */}
+      <section id="archive" className="py-20 md:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="mb-12 text-center">
-            <SectionBadge text={reportsData.reports.tag} icon={<FileText size={14} />} />
+          <AnimatedSection className="mb-12">
+            <SectionBadge text={pressStatementsData.archive.tag} icon={<Calendar size={14} />} />
             <h2 className="font-serif text-3xl md:text-4xl font-black">
-              {reportsData.reports.title}
+              {pressStatementsData.archive.title}
             </h2>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reportsData.reports.items.map((report, idx) => {
-              const Icon = report.icon || FileText;
-              return (
-                <AnimatedSection key={report.title} delay={idx * 100}>
-                  <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100 flex flex-col">
-                    <Icon className="w-12 h-12 text-[#C9293A] mb-4" />
-                    <span className="text-[#C9293A] text-xs font-semibold uppercase tracking-wide">
-                      {report.category}
-                    </span>
-                    <h3 className="font-serif text-xl font-bold mt-2 mb-3">
-                      {report.title}
-                    </h3>
-                    <div className="flex items-center text-gray-500 text-sm mb-3">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      {report.date}
-                    </div>
-                    <p className="text-gray-600 text-sm mb-5 flex-grow">
-                      {report.description}
-                    </p>
-                    <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:-translate-y-1 transition w-fit shadow-md">
-                      <Download size={16} />
-                      Download
-                    </button>
+          <div className="grid md:grid-cols-3 gap-8">
+            {pressStatementsData.archive.items.map((item, idx) => (
+              <AnimatedSection key={item.title} delay={idx * 100}>
+                <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100">
+                  <div className="flex items-center text-[#C9293A] text-sm mb-3">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    {item.date}
                   </div>
-                </AnimatedSection>
-              );
-            })}
+                  <span className="inline-block text-[#C9293A] text-xs font-semibold uppercase tracking-wide mb-2">
+                    {item.category}
+                  </span>
+                  <h3 className="font-serif text-xl font-bold mb-4">{item.title}</h3>
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-1 text-[#C9293A] font-medium text-sm hover:gap-2 transition"
+                  >
+                    Read Statement <ArrowRight size={12} />
+                  </a>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* ========== MEDIA CONTACT ========== */}
+      <section id="media-contact" className="py-20 md:py-28 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <Mail className="w-14 h-14 text-[#C9293A] mx-auto mb-4" />
+            <h2 className="font-serif text-3xl md:text-4xl font-black mb-4">
+              {pressStatementsData.mediaContact.title}
+            </h2>
+            <p className="text-gray-600 mb-4 max-w-lg mx-auto">
+              {pressStatementsData.mediaContact.description}
+            </p>
+            <a
+              href={`mailto:${pressStatementsData.mediaContact.email}`}
+              className="inline-block text-[#C9293A] font-semibold text-lg hover:underline"
+            >
+              {pressStatementsData.mediaContact.email}
+            </a>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -276,16 +284,16 @@ const Reports = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <h2 className="font-serif text-3xl md:text-5xl font-black mb-4">
-              {reportsData.cta.title}
+              {pressStatementsData.cta.title}
             </h2>
             <p className="text-gray-300 text-base md:text-lg mb-8 max-w-2xl mx-auto">
-              {reportsData.cta.description}
+              {pressStatementsData.cta.description}
             </p>
             <a
-              href={reportsData.cta.link}
+              href={pressStatementsData.cta.link}
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-8 py-3 rounded-full font-semibold hover:-translate-y-1 transition-all duration-300 shadow-lg"
             >
-              {reportsData.cta.buttonText}
+              {pressStatementsData.cta.buttonText}
               <ArrowRight size={18} />
             </a>
           </AnimatedSection>
@@ -295,4 +303,4 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+export default PressStatements;

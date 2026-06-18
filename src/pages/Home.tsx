@@ -85,11 +85,9 @@ const Home = () => {
       link: "/about",
     },
     {
-      image: "/images/medai2.jpg",
+      image: "/images/image.png",
       eyebrow: "FPI Zambia",
-      title: "Media Literacy for All",
-      highlight: "Critical Thinking",
-      subtitle: "Against Misinformation",
+      title: "Media and Information Literacy",
       description: "Building resilient communities through digital literacy.",
       cta: "Explore Programs",
       link: "/programs/media-literacy",
@@ -257,12 +255,7 @@ const Home = () => {
                     <a href="#about" style={{ fontSize: 12, color: "rgba(255,255,255,0.8)", textDecoration: "underline", textUnderlineOffset: 3 }}>Learn about FPI</a>
                   </motion.div>
                   <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.65 }} style={{ marginTop: 32, display: "flex", gap: 20, justifyContent: "center" }}>
-                    {[{ value: "10+", label: "Years" }, { value: "500+", label: "Journalists" }, { value: "50+", label: "Communities" }].map((s, i) => (
-                      <div key={i} style={{ textAlign: "center" }}>
-                        <div style={{ fontFamily: "Georgia, serif", fontWeight: 900, fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)", background: "linear-gradient(135deg, #FDE047, #FFB347)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{s.value}</div>
-                        <div style={{ color: "rgba(255,255,255,0.7)", fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase" }}>{s.label}</div>
-                      </div>
-                    ))}
+
                   </motion.div>
                 </div>
               </div>
@@ -304,19 +297,6 @@ const Home = () => {
               <p style={{ color: "#4B5563", fontSize: 13, lineHeight: 1.7, marginBottom: 20 }}>
                 Through training, research, advocacy and community engagement, we empower journalists, civil society organizations and communities.
               </p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 24 }}>
-                {[
-                  { value: "500+", label: "Journalists Trained" },
-                  { value: "50+", label: "Communities Reached" },
-                  { value: "100+", label: "Programs Run" },
-                  { value: "25+", label: "Strategic Partners" },
-                ].map((stat, i) => (
-                  <div key={i} style={{ background: "linear-gradient(135deg, #EFF6FF, #FFF7ED)", borderRadius: 14, padding: "12px 8px", textAlign: "center" }}>
-                    <div style={{ fontFamily: "Georgia,serif", fontWeight: 800, fontSize: 20, background: "linear-gradient(135deg,#2563EB,#EA580C)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>{stat.value}</div>
-                    <div style={{ color: "#6B7280", fontSize: 10, marginTop: 2 }}>{stat.label}</div>
-                  </div>
-                ))}
-              </div>
               <Link to="/about" style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "linear-gradient(135deg,#2563EB,#EA580C)", color: "#fff", fontSize: 12, fontWeight: 600, padding: "8px 20px", borderRadius: 999, textDecoration: "none", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}>
                 Learn More About FPI <ArrowRight size={12} />
               </Link>

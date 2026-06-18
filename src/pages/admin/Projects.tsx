@@ -18,6 +18,34 @@ const Projects = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  const handleDelete = async (id: number) => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this project?"
+  );
+
+  if (!confirmDelete) return;
+
+  try {
+    const response = await fetch(
+      `http://localhost:5000/api/projects/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to delete project");
+    }
+
+    setProjects(
+      projects.filter((project) => project.id !== id)
+    );
+  } catch (error) {
+    console.error(error);
+    alert("Failed to delete project");
+  }
+};
+
   return (
     <div className="p-6">
       {/* HEADER */}
@@ -35,21 +63,55 @@ const Projects = () => {
       {/* TABLE */}
       <div className="bg-white rounded shadow overflow-hidden">
         <table className="w-full">
-          <thead>
-            <tr className="border-b bg-gray-50">
-              <th className="text-left p-3">Title</th>
-              <th className="text-left p-3">Category</th>
-              <th className="text-left p-3">Status</th>
-            </tr>
-          </thead>
+        <thead>
+          <tr className="border-b bg-gray-50">
+            <th className="text-left p-3">Title</th>
+            <th className="text-left p-3">Category</th>
+            <th className="text-left p-3">Status</th>
+            <th className="text-left p-3">Actions</th>
+          </tr>
+        </thead>
 
           <tbody>
             {projects.map((project) => (
-              <tr key={project.id} className="border-b hover:bg-gray-50">
-                <td className="p-3">{project.title}</td>
-                <td className="p-3">{project.category || "-"}</td>
-                <td className="p-3">{project.status || "-"}</td>
-              </tr>
+            <tr key={project.id} className="border-b hover:bg-gray-50">
+              <td className="p-3">{project.title}</td>
+
+              <td className="p-3">
+                {project.category || "-"}
+              </td>
+
+              <td className="p-3">
+                {project.status || "-"}
+              </td>
+
+              <td className="p-3">
+                <div className="flex gap-2">
+
+                  <Link
+                    to={`/projects/${project.id}`}
+                    className="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700"
+                  >
+                    View
+                  </Link>
+
+                  <Link
+                    to={`/admin/projects/${project.id}/edit`}
+                    className="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600"
+                  >
+                    Edit
+                  </Link>
+
+                  <button
+                    onClick={() => handleDelete(project.id)}
+                    className="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+
+                </div>
+              </td>
+            </tr>
             ))}
           </tbody>
         </table>

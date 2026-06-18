@@ -58,15 +58,37 @@ const Navbar = () => {
         { name: "Enhancing Conflict Sensitive Journalism", path: "/projects/conflict-sensitive-journalism", description: "Responsible and ethical reporting" },
       ],
     },
-    knowledge: {
-      title: "Knowledge",
-      icon: "📖",
-      items: [
-        { name: "Newsletters", path: "/knowledge/newsletters", description: "Updates" },
-        { name: "Reports", path: "/knowledge/reports", description: "Publications" },
-        { name: "Press Statements", path: "/knowledge/press-statements", description: "Official statements" },
-      ],
-    },
+        knowledge: {
+        title: "Knowledge",
+        icon: "📖",
+        items: [
+            {
+            name: "Resources Hub",
+            path: "/resources",
+            description: "Knowledge centre",
+            },
+            {
+            name: "Reports",
+            path: "/knowledge/reports",
+            description: "Research publications",
+            },
+            {
+            name: "Newsletters",
+            path: "/knowledge/newsletters",
+            description: "Latest updates",
+            },
+            {
+            name: "Publications",
+            path: "/knowledge/publications",
+            description: "Guides and toolkits",
+            },
+            {
+            name: "Press Statements",
+            path: "/knowledge/press-statements",
+            description: "Official statements",
+            }
+        ],
+        },
     about: {
       title: "About FPI",
       icon: "🏢",

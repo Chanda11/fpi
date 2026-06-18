@@ -1,68 +1,85 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  BookOpen,
   FileText,
   Download,
-  Calendar,
-  BookOpen,
   ArrowRight,
+  GraduationCap,
 } from "lucide-react";
 
 // ============================================================
 // DATA CONFIGURATION – all content can be replaced from admin
 // ============================================================
-const reportsData = {
+const publicationsData = {
   hero: {
     eyebrow: "Knowledge Centre",
-    title: "Reports & Publications",
+    title: "Publications",
     description:
-      "Research reports, policy briefs, toolkits and publications produced by FPI Zambia.",
+      "Access guides, manuals, policy briefs, toolkits and educational resources developed by FPI Zambia.",
     backgroundImage: "/images/activity-1.jpg",
-    ctaPrimary: { text: "Explore Reports", link: "#reports" },
-    ctaSecondary: { text: "View All Publications", link: "#archive" },
+    ctaPrimary: { text: "Explore Archive", link: "#archive" },
+    ctaSecondary: { text: "Latest Guides", link: "#latest" },
   },
-  intro: {
-    tag: "Knowledge Resources",
-    title: "Evidence for Change",
-    description:
-      "Our publications provide evidence, analysis and practical guidance to strengthen journalism, media literacy and democratic governance.",
-    icon: BookOpen,
-  },
-  reports: {
-    tag: "Our Reports",
-    title: "Latest Reports & Publications",
+  categories: {
+    tag: "Resource Types",
+    title: "Publication Categories",
     items: [
       {
-        title: "State of Media Freedom Report 2025",
-        category: "Research Report",
+        icon: FileText,
+        title: "Policy Briefs",
+        description: "Evidence-based recommendations and policy insights.",
+      },
+      {
+        icon: GraduationCap,
+        title: "MIL Guides",
+        description: "Media & Information Literacy learning resources.",
+      },
+      {
+        icon: Download,
+        title: "Toolkits",
+        description: "Practical implementation and training resources.",
+      },
+    ],
+  },
+  featured: {
+    tag: "Featured Publication",
+    title: "Media & Information Literacy Guide",
+    description:
+      "A practical handbook supporting media literacy, digital citizenship and critical thinking.",
+    image: "/images/activity-1.jpg",
+    buttonText: "Download Guide",
+    link: "#",
+  },
+  archive: {
+    tag: "Archive",
+    title: "Publications Archive",
+    items: [
+      {
+        title: "Media & Information Literacy Guide",
+        category: "MIL Guide",
+        date: "June 2025",
+        image: "/images/activity-1.jpg",
+      },
+      {
+        title: "Digital Literacy Toolkit",
+        category: "Toolkit",
         date: "May 2025",
-        description:
-          "An assessment of media freedom, journalism practices and access to information in Zambia.",
-        icon: FileText,
+        image: "/images/activity-2.jpg",
       },
       {
-        title: "Media Literacy Toolkit",
-        category: "Educational Resource",
-        date: "March 2025",
-        description:
-          "A practical guide for educators, journalists and community leaders.",
-        icon: FileText,
-      },
-      {
-        title: "Digital Media Trends Study",
-        category: "Research Publication",
-        date: "January 2025",
-        description:
-          "Exploring digital transformation and emerging technologies in the media sector.",
-        icon: FileText,
+        title: "Media Freedom Policy Brief",
+        category: "Policy Brief",
+        date: "April 2025",
+        image: "/images/activity-3.jpg",
       },
     ],
   },
   cta: {
-    title: "Stay Informed",
+    title: "Knowledge for Change",
     description:
-      "Subscribe to receive updates on new publications, research findings and media freedom reports.",
-    buttonText: "Subscribe Now",
-    link: "#",
+      "Explore our publications to strengthen media literacy, advocacy and democratic participation.",
+    buttonText: "Explore All Publications",
+    link: "#archive",
   },
 };
 
@@ -144,7 +161,7 @@ const GradText = ({ children }: { children: React.ReactNode }) => (
 // ============================================================
 // MAIN COMPONENT
 // ============================================================
-const Reports = () => {
+const Publications = () => {
   return (
     <div className="font-sans bg-gradient-to-b from-white to-gray-50">
       <style>{`
@@ -169,7 +186,7 @@ const Reports = () => {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url(${reportsData.hero.backgroundImage})` }}
+          style={{ backgroundImage: `url(${publicationsData.hero.backgroundImage})` }}
         ></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
@@ -181,92 +198,126 @@ const Reports = () => {
             <div className="inline-flex items-center gap-2 mb-4">
               <span className="block w-6 h-[2px] bg-[#E8610A] rounded-full"></span>
               <span className="text-[10px] font-bold tracking-[0.16em] uppercase text-white/80">
-                {reportsData.hero.eyebrow}
+                {publicationsData.hero.eyebrow}
               </span>
               <span className="block w-6 h-[2px] bg-[#E8610A] rounded-full"></span>
             </div>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-4">
-              <GradText>Reports & Publications</GradText>
+              <GradText>Publications</GradText>
             </h1>
             <p className="text-white/80 text-base md:text-lg max-w-2xl mb-8 leading-relaxed">
-              {reportsData.hero.description}
+              {publicationsData.hero.description}
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href={reportsData.hero.ctaPrimary.link}
+                href={publicationsData.hero.ctaPrimary.link}
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-6 py-3 rounded-full font-semibold text-sm hover:-translate-y-1 transition-all duration-300 shadow-lg"
               >
-                {reportsData.hero.ctaPrimary.text}
+                {publicationsData.hero.ctaPrimary.text}
               </a>
               <a
-                href={reportsData.hero.ctaSecondary.link}
+                href={publicationsData.hero.ctaSecondary.link}
                 className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/10 hover:-translate-y-1 transition-all duration-300"
               >
-                {reportsData.hero.ctaSecondary.text}
+                {publicationsData.hero.ctaSecondary.text}
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========== INTRO SECTION ========== */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <AnimatedSection>
-            <div className="inline-flex items-center gap-2 text-[#C9293A] mb-4">
-              <span className="block w-6 h-[2px] bg-[#C9293A] rounded-full"></span>
-              <span className="text-[10px] font-bold tracking-[0.16em] uppercase">{reportsData.intro.tag}</span>
-              <span className="block w-6 h-[2px] bg-[#C9293A] rounded-full"></span>
-            </div>
-            <BookOpen className="w-14 h-14 text-[#C9293A] mx-auto mb-4" />
-            <h2 className="font-serif text-3xl md:text-5xl font-black mb-4">
-              {reportsData.intro.title}
-            </h2>
-            <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-              {reportsData.intro.description}
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* ========== REPORTS CARDS ========== */}
-      <section id="reports" className="py-20 md:py-28 bg-gray-50">
+      {/* ========== CATEGORIES ========== */}
+      <section className="py-20 md:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="mb-12 text-center">
-            <SectionBadge text={reportsData.reports.tag} icon={<FileText size={14} />} />
-            <h2 className="font-serif text-3xl md:text-4xl font-black">
-              {reportsData.reports.title}
+          <AnimatedSection className="text-center max-w-2xl mx-auto mb-14">
+            <SectionBadge text={publicationsData.categories.tag} icon={<BookOpen size={14} />} />
+            <h2 className="font-serif text-3xl md:text-4xl font-black mb-4">
+              {publicationsData.categories.title}
             </h2>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {reportsData.reports.items.map((report, idx) => {
-              const Icon = report.icon || FileText;
+          <div className="grid md:grid-cols-3 gap-8">
+            {publicationsData.categories.items.map((item, idx) => {
+              const Icon = item.icon;
               return (
-                <AnimatedSection key={report.title} delay={idx * 100}>
-                  <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100 flex flex-col">
-                    <Icon className="w-12 h-12 text-[#C9293A] mb-4" />
-                    <span className="text-[#C9293A] text-xs font-semibold uppercase tracking-wide">
-                      {report.category}
-                    </span>
-                    <h3 className="font-serif text-xl font-bold mt-2 mb-3">
-                      {report.title}
-                    </h3>
-                    <div className="flex items-center text-gray-500 text-sm mb-3">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      {report.date}
-                    </div>
-                    <p className="text-gray-600 text-sm mb-5 flex-grow">
-                      {report.description}
-                    </p>
-                    <button className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:-translate-y-1 transition w-fit shadow-md">
-                      <Download size={16} />
-                      Download
-                    </button>
+                <AnimatedSection key={item.title} delay={idx * 100}>
+                  <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full border border-gray-100">
+                    <Icon className="w-10 h-10 text-[#C9293A] mb-4" />
+                    <h3 className="font-serif text-xl font-bold mb-3">{item.title}</h3>
+                    <p className="text-gray-600">{item.description}</p>
                   </div>
                 </AnimatedSection>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ========== FEATURED PUBLICATION ========== */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="bg-[#080c1a] rounded-2xl overflow-hidden shadow-2xl grid lg:grid-cols-2">
+              <div
+                className="min-h-[350px] bg-cover bg-center"
+                style={{ backgroundImage: `url(${publicationsData.featured.image})` }}
+              ></div>
+              <div className="p-8 lg:p-12 text-white flex flex-col justify-center">
+                <span className="text-[#C9A84C] uppercase tracking-wider text-xs font-semibold mb-3">
+                  {publicationsData.featured.tag}
+                </span>
+                <h2 className="font-serif text-3xl md:text-4xl font-black mb-4">
+                  {publicationsData.featured.title}
+                </h2>
+                <p className="text-gray-300 text-sm md:text-base mb-6 leading-relaxed">
+                  {publicationsData.featured.description}
+                </p>
+                <a
+                  href={publicationsData.featured.link}
+                  className="bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-6 py-2 rounded-full text-sm font-semibold w-fit hover:-translate-y-1 transition shadow-lg"
+                >
+                  {publicationsData.featured.buttonText}
+                </a>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* ========== ARCHIVE ========== */}
+      <section id="archive" className="py-20 md:py-28 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="mb-12">
+            <SectionBadge text={publicationsData.archive.tag} icon={<FileText size={14} />} />
+            <h2 className="font-serif text-3xl md:text-4xl font-black">
+              {publicationsData.archive.title}
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {publicationsData.archive.items.map((item, idx) => (
+              <AnimatedSection key={item.title} delay={idx * 100}>
+                <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full">
+                  <div
+                    className="h-48 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${item.image})` }}
+                  ></div>
+                  <div className="p-6">
+                    <span className="text-[#C9293A] text-xs font-semibold uppercase tracking-wide">
+                      {item.category}
+                    </span>
+                    <h3 className="font-serif text-xl font-bold mt-2 mb-2">{item.title}</h3>
+                    <p className="text-gray-500 text-sm mb-4">{item.date}</p>
+                    <a
+                      href="#"
+                      className="inline-flex items-center gap-1 text-[#C9293A] font-medium text-sm hover:gap-2 transition"
+                    >
+                      Read More <ArrowRight size={12} />
+                    </a>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -276,16 +327,16 @@ const Reports = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <h2 className="font-serif text-3xl md:text-5xl font-black mb-4">
-              {reportsData.cta.title}
+              {publicationsData.cta.title}
             </h2>
             <p className="text-gray-300 text-base md:text-lg mb-8 max-w-2xl mx-auto">
-              {reportsData.cta.description}
+              {publicationsData.cta.description}
             </p>
             <a
-              href={reportsData.cta.link}
+              href={publicationsData.cta.link}
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C9293A] to-[#E8610A] text-white px-8 py-3 rounded-full font-semibold hover:-translate-y-1 transition-all duration-300 shadow-lg"
             >
-              {reportsData.cta.buttonText}
+              {publicationsData.cta.buttonText}
               <ArrowRight size={18} />
             </a>
           </AnimatedSection>
@@ -295,4 +346,4 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+export default Publications;

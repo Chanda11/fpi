@@ -76,12 +76,12 @@ const aboutData = {
     title: "Our Impact",
     description:
       "Measuring our contribution to media freedom, media literacy and democratic participation.",
-    stats: [
-      { number: "500+", label: "Journalists trained" },
-      { number: "100+", label: "Workshops conducted" },
-      { number: "50+", label: "Communities reached" },
-      { number: "25+", label: "Strategic partners" },
-    ],
+stats: [
+  { number: "1,000+", label: "Citizens Reached" },
+  { number: "300+", label: "Journalists Trained" },
+  { number: "10", label: "MIL Hubs" },
+  { number: "30+", label: "Strategic Partners" },
+],
   },
   timeline: [
     { year: "2020", label: "Organization founded" },

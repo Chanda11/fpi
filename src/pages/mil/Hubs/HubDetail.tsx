@@ -166,12 +166,16 @@ fetch(`http://localhost:5000/api/hubs/${slug}`)
             {hub.events?.length > 0 ? (
               <ul className="space-y-3">
                 {hub.events.map((event: any) => (
-                  <li
-                    key={event.id}
-                    className="border-b pb-3"
-                  >
-                    {event.title}
-                  </li>
+              <li
+                key={event.id}
+                className="border-b pb-3 flex justify-between items-center"
+              >
+                <span>{event.title}</span>
+
+                <span className="text-[#C9293A] font-semibold">
+                  Activity
+                </span>
+              </li>
                 ))}
               </ul>
             ) : (
@@ -199,15 +203,37 @@ fetch(`http://localhost:5000/api/hubs/${slug}`)
                 ))}
               </div>
             ) : (
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="bg-gray-200 h-56 rounded-xl"></div>
-                <div className="bg-gray-200 h-56 rounded-xl"></div>
-                <div className="bg-gray-200 h-56 rounded-xl"></div>
-              </div>
+          <img
+            src="/images/activity-1.jpg"
+            alt="MIL Hub"
+            className="rounded-xl h-56 w-full object-cover"
+          />
             )}
           </div>
 
         </div>
+        <section className="bg-[#080C1A] text-white py-24 mt-20">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+
+            <h2 className="text-5xl font-bold mb-6">
+              Join the Media & Information Literacy Network
+            </h2>
+
+            <p className="text-gray-300 text-lg mb-8">
+              MIL Hubs provide safe spaces for learning,
+              collaboration, civic engagement and digital literacy
+              across Zambia.
+            </p>
+
+            <a
+              href="/contact"
+              className="inline-block bg-[#C9293A] px-8 py-4 rounded-xl font-semibold hover:bg-red-700 transition"
+            >
+              Contact Us
+            </a>
+
+          </div>
+        </section>      
       </section>
     </>
   );
