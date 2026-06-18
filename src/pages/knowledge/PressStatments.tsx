@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import {
-  Megaphone,
   Calendar,
   ArrowRight,
   Mail,
@@ -246,7 +245,7 @@ const PressStatements = () => {
                   </span>
                   <h3 className="font-serif text-xl font-bold mb-4">{item.title}</h3>
                   <a
-                    href="#"
+                    href="/documents/report.pdf"
                     className="inline-flex items-center gap-1 text-[#C9293A] font-medium text-sm hover:gap-2 transition"
                   >
                     Read Statement <ArrowRight size={12} />

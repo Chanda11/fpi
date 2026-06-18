@@ -5,6 +5,7 @@ import {
   Download,
   ArrowRight,
   GraduationCap,
+  Link,
 } from "lucide-react";
 
 // ============================================================
@@ -308,12 +309,9 @@ const Publications = () => {
                     </span>
                     <h3 className="font-serif text-xl font-bold mt-2 mb-2">{item.title}</h3>
                     <p className="text-gray-500 text-sm mb-4">{item.date}</p>
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-1 text-[#C9293A] font-medium text-sm hover:gap-2 transition"
-                    >
+                    <Link to="/knowledge/publications" className="inline-flex items-center gap-1 text-[#C9293A] font-medium text-sm hover:gap-2 transition">
                       Read More <ArrowRight size={12} />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </AnimatedSection>
