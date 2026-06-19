@@ -61,11 +61,6 @@ const newslettersData = {
       featured: false,
     },
   ],
-  stats: [
-    { number: "2,500+", label: "Subscribers" },
-    { number: "12", label: "Issues Published" },
-    { number: "10+", label: "Partner Organizations" },
-  ],
   subscribe: {
     tag: "Never Miss an Update",
     title: "Subscribe to Our Newsletter",
@@ -218,16 +213,6 @@ const Newsletters = () => {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-16">
-            {newslettersData.stats.map((stat, idx) => (
-              <AnimatedSection key={stat.label} delay={idx * 100}>
-                <div className="bg-white rounded-2xl p-6 shadow-md border border-gray-100">
-                  <div className="font-serif text-4xl md:text-5xl font-black text-[#C9293A] mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
-                </div>
-              </AnimatedSection>
-            ))}
           </div>
         </div>
       </section>
